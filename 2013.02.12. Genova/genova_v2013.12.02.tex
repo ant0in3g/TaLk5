@@ -1,0 +1,388 @@
+% BEGIN ------------------   Version   ------------------- END %
+
+\newcommand{\version}{\today} % Definie la commande << version >>, à laquelle on a attribué ici la date d'aujoud'hui.
+
+% BEGIN ------------------   Classe du document   ------------------- END %
+
+\documentclass[a4paper,11pt]{beamer} % Le format du papier, la taille de police d'écriture, le modèle du document.
+
+% BEGIN-------------------   Packages   ------------------- END %
+
+\usepackage[french,english,italian,german]{babel} % Permet de sélectionner la langue, ici je vais avoir le choix entre le français, l'anglais, l'allemand, et l'italien. 
+\usepackage[utf8]{inputenc} % Gestion des accents (source).
+\usepackage[T1]{fontenc} % Gestion des accents (PDF).
+\usepackage{geometry} % Gestion des marges.
+\usepackage{amsfonts,amsmath,amsthm,amssymb,amscd,amsxtra} % Package pour les maths.
+\usepackage{array} % Package pour dessiner des tableaux.
+\usepackage{xcolor} % Gestion des couleurs (black, white, red, green, blue, cyan, magenta, pink).
+\usepackage{hyperref} % Gestion des hyperliens.
+\usepackage{lmodern} % Police de caractère.
+\usepackage{graphicx} % Incorporate graphics.
+\usepackage{multicol} % Permet de diviser document en plusieurs colonnes.
+\usepackage{setspace} % Provides support for setting the spacing between lines in a document.
+
+% BEGIN-------------------   Hyperref   ------------------- END %
+
+\hypersetup{colorlinks=true, % Permet de colrier les liens au lieu de les encadrer.
+linkcolor=blue, % Permet de changer la couleur des liens.
+filecolor=brown, % Permet de changer la couleur des 
+urlcolor=gray, % Permet de changer la couleur des hyperliens.
+citecolor=purple} % Permet de changer la couleur des citations.
+
+% BEGIN --------------------  Commandes personnalisées  -------------------- END %
+
+%\renewcommand{\thefootnote}{\arabic{footnote}} % Customizing footnote markers by using arabic numerals, e.g., 1, 2, 3...
+%\renewcommand{\thefootnote}{\roman{footnote}} % Customizing footnote markers by using roman numerals (lowercase), e.g., i, ii, iii...
+%\renewcommand{\thefootnote}{\Roman{footnote}} % Customizing footnote markers by using roman numerals (uppercase), e.g., I, II, III...
+%\renewcommand{\thefootnote}{\alph{footnote}} % Customizing footnote markers by using alphabetic (lowercase), e.g., a, b, c...
+%\renewcommand{\thefootnote}{\Alph{footnote}} % Customizing footnote markers by using alphabetic (uppercase), e.g., A, B, C...
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} % Customizing footnote markers by using a sequence of nine symbols (try it and see!) 
+\newcommand{\LogoUnivGenova}{\protect\includegraphics[scale=0.015]{fig_genova.JPG}} % Definie un logo.
+
+% BEGIN --------------------  theoremstyle  -------------------- END %
+
+\newtheorem{dfn}{Definition}
+%\renewcommand{\thedfn}{\empty{}} % Permet d'enlever la numérotation des définitions.
+\newtheorem{thm}{Theorem}
+%\renewcommand{\thethm}{\empty{}} % Permet d'enlever la numérotation des theoremes.
+\newtheorem{prop}{Proposition}
+%\renewcommand{\theprop}{\empty{}} % Permet d'enlever la numérotation des propositions.
+\newtheorem{lem}{Lemma}
+%\renewcommand{\thelm}{\empty{}} % Permet d'enlever la numérotation des lemmas.
+\newtheorem{corol}{Corollary}
+%\renewcommand{\thecorol}{\empty{}} % Permet d'enlever la numérotation des corrolaires.
+\newtheorem{rem}{Remark}
+%\renewcommand{\therem}{\empty{}} % Permet d'enlever la numérotation des remark.
+\newtheorem{rems}{Remarks}
+%\renewcommand{\therems}{\empty{}} % Permet d'enlever la numérotation des remarks.
+\newtheorem{ex}{Example}
+%\renewcommand{\theex}{\empty{}} % Permet d'enlever la numérotation des exemples.
+\newtheorem{exs}{Examples}
+%\renewcommand{\theex}{\empty{}} % Permet d'enlever la numérotation des exemples.
+\newtheorem{demo}{Proof}
+%\renewcommand{\thedemo}{\empty{}} % Permet d'enlever la numérotation des proofs.
+\newtheorem{conj}{Conjecture}
+%\renewcommand{\theconj}{\empty{}} % Permet d'enlever la numérotation des conjecturess.
+
+% BEGIN-------------------   Theme   ------------------- END %
+
+%\usepackage{beamerthemesplit}
+%\usepackage{beamerthemeMalmoe}
+%\usepackage{beamerinnerthemerounded}
+%\usepackage{beamerouterthememiniframes}
+\usepackage{beamerouterthemeshadow}
+%\usepackage{beamerouterthemesidebar}
+%\usepackage{beamerthemeAnnArbor}
+%\usepackage{beamerthemeBerkeley}
+%\usepackage{beamerthemeCambridgeUS}
+%\usepackage{beamerthemeclassic}
+%\usepackage{beamerthemeCopenhagen}
+%\usepackage{beamerthemelined}
+%\usepackage{beamerthemeMadrid}
+
+% BEGIN ======================================================================================================== END %
+% ===== %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        DOCUMENT         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ==== %
+% BEGIN ======================================================================================================== END %
+
+\begin{document}
+
+\selectlanguage{english}
+
+\begin{frame}
+\title{Avanzamento tesi}
+\date{Lunedì 2 dicembre 2013}
+\author{\href{mailto:gere@dima.unige.it}{Antoine Géré} \\
+ \medskip \footnotesize{Relatore: \href{http://www.pinamonti.eu/}{Nicola Pinamonti}} \\
+ \medskip \footnotesize{Gruppo di Fisica Matematica}}
+\institute{\href{http://www.dima.unige.it/}{Dipartimento di Matematica}, \href{http://www.unige.it/}{Università degli Studi di Genova}}
+\titlepage
+\begin{figure}[h]
+\raisebox{0cm}{\includegraphics[scale=0.04]{fig_genova.JPG}}
+\end{figure}
+\end{frame}
+
+\section{PhD} 
+
+\subsection{Dimensional regularisation in AQFT}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \emph{\small{Dimensional Regularisation in AQFT}}}
+\begin{block}{General picture}
+\vspace{-6mm}
+\begin{setstretch}{1.4}
+\begin{center} 
+\begin{color}{purple}
+\textbf{Perturbative Quantum Field Theory}. \\
+\end{color}
+Framework with which appear \textbf{powers of distributions}, \\
+in general \textbf{ill defined}.\\
+\begin{footnotesize}
+To look at this isue we chose to work with the \textbf{analytic regularisation}, \\used with \textbf{success on Minkowski spacetime} (see \cite{Bollini1972} \& \cite{Hooft1972}). \\
+\end{footnotesize}
+We will look at this issue on \begin{color}{purple} \textbf{curved space time} \end{color}.
+\end{center}
+\end{setstretch}
+\vspace{-4mm}
+\begin{itemize}
+\item \begin{color}{green!60!black}Classical\end{color} field theory.
+\item \begin{color}{green!60!black}Quantum\end{color} level, then \begin{color}{green!60!black}pertubative\end{color} theory.
+\item \begin{color}{green!60!black}Overview\end{color} of the existing \begin{color}{green!60!black}tools\end{color}.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} Scalar field theory \; \cite{ThomasPhD} \cite{KaiPhD}}
+\begin{block}{Classical scalar field theory}
+\vspace{-4mm}
+\begin{multicols}{2}
+\begin{setstretch}{1.4}
+\begin{scriptsize}
+$(M,g)$: Minkowski spacetime. \\
+Lagrangian: $L = g^{ab} \partial_a \phi \partial_b \phi + m^2 \phi^2$. \\
+Eq. of motion: $P \phi \doteq (\Box + m^2)\phi=0$. \\
+$\Delta = (\Delta_{adv} - \Delta_{ret}) \in D^{\prime}(M^2)$.\\
+$\Delta$ : causal propagator.\\
+$\forall \phi \in \mathcal{S}(M), \; \phi = \Delta f, \; f\in D(M,\mathbb{R})$. \\
+$\left(\mathcal{S}(M), \sigma \right)$: Symplectic space.\\
+$\sigma(\phi_f,\phi_g) = \langle f, \Delta g \rangle \doteq \Delta(f,g)$.\\
+To implemente dynamic: $\phi(Pf)=0$. \\
+\end{scriptsize}
+\end{setstretch}
+\end{multicols}
+\vspace{-4mm}
+\end{block}
+\begin{block}{Quantum scalar field theory}
+\begin{setstretch}{1.4}
+\begin{scriptsize}
+To promote $\phi(f)$ to a proper quantum field: \quad $[\phi(f_1),\phi(f_2)] = i \Delta(f_1,f_2) \mathbb{I}$. \\
+\indent We have a $\ast$-algebra over the fields. \\
+\begin{color}{purple} \emph{Perturbative theory} \end{color} $\to$ \begin{color}{green!60!black} powers of distributions \end{color}ill defined at the origin.\\
+\end{scriptsize}
+\begin{tiny}
+\vspace{-3mm}
+\begin{center}
+e.g. \; $L(x) = L_{free} + L_{int}$, \; with \; $L_{int} = - :\phi^4(x):$ 
+\end{center}
+\vspace{-7mm}
+\begin{multicols}{2}
+\begin{center}
+$:\phi(x)^4: \; \begin{color}{purple}\star\end{color} \; :\phi(y)^4: \;  \textbf{=}  \; :\phi(x)^4 \phi(y)^4 :$ \\ 
+$\textbf{+} \; 16 \; :\phi(x)^3 \phi(y)^3: \; \Delta^{+}(x,y)$ \\ 
+$\textbf{+} \; 72 \; :\phi(x)^2 \phi(y)^2: \; \begin{color}{green!60!black}\left( \Delta^{+}(x,y) \right)^{\textbf{2}}\end{color} \; + ...$   \\
+$:\phi(x)^4: \; \begin{color}{purple}\star_{T}\end{color} \; :\phi(y)^4: \;  \textbf{=}  \; :\phi(x)^4 \phi(y)^4 :$ \\ 
+$\textbf{+} \; 16 \; :\phi(x)^3 \phi(y)^3: \; \Delta_F(x,y)$ \\ 
+$\textbf{+} \; 72 \; :\phi(x)^2 \phi(y)^2: \; \begin{color}{green!60!black}\left( \Delta_F(x,y) \right)^{\textbf{2}}\end{color} \; + ...$ 
+\end{center}
+\end{multicols}
+\end{tiny}
+\end{setstretch}
+\end{block}
+\end{frame} 
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \cite{Hormander1990}}
+$u : C^{\infty}_{0}(\mathbb{R}^n) \to \mathbb{R}$ \; distribution : $\mathcal{D}^{\prime}(\mathbb{R}^n)$
+\medskip
+\begin{block}{Singular support}
+$singsupp(u) \doteq \left\{ x \in \mathbb{R}^n \; | \; \exists U_x \ni x \; : \; u|_{U_x} \notin C^{\infty}(U_x) \right\}$ 
+\end{block}
+\medskip
+\begin{block}{Wave Front set}
+\begin{scriptsize}
+$WF (u) = \left\{ (x,k) \in T^{\ast}\mathbb{R}^n \backslash \{0\} \; | \; x \in singsupp(u), \; \forall f \; : \; \hat{fu} \;
+\begin{array}{l} \text{does not decay} \\ \text{rapidely in direction k} \end{array}\right\}$
+\end{scriptsize}
+\end{block}
+\begin{block}{Microlocal Analysis} 
+\vspace{-4mm}
+\begin{center}
+\begin{color}{purple}\textbf{if}\end{color} $u,v \in \mathcal{D}^{\prime}(\mathbb{R}^n)$ and \begin{color}{green!60!black}$WF(u) \oplus WF(v) \neq 0$\end{color}, \\
+\begin{color}{purple}\textbf{then}\end{color} $\begin{color}{green!60!black}\exists! \; u.v \end{color}\in \mathcal{D}^{\prime}(\mathbb{R}^n).$
+\end{center}
+\begin{scriptsize}
+with $WF(u) \oplus WF(v) = \left\{ (x,k_1 + k_2) \; | \; (x,k_1) \in WF(u) \; ; \; (x,k_2) \in WF(v) \right\}$.
+\end{scriptsize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \cite{BF2000}}
+\vspace{-2mm}
+$u : C^{\infty}_{0}(\mathbb{R}^n) \to \mathbb{R}$ \; distribution : $\mathcal{D}^{\prime}(\mathbb{R}^n)$
+\vspace{0mm}
+\begin{block}{Scaling degree}
+\begin{footnotesize}
+$u \in \mathcal{D}^{\prime}(\mathbb{R}^n)$ \\
+$sd(u) \doteq inf \left\{ \omega \in \mathbb{R}^n \; | \; \underset{\rho \to 0}{\lim} \rho^\omega u_\rho = 0 \right\}$, \; $u_\rho (f) = \int_{\mathbb{R}^d} dx \; u(\rho x) f(x)$.
+\end{footnotesize}
+\end{block}
+\vspace{-2mm}
+\begin{thm} 
+\begin{footnotesize}
+$v \in D^{\prime}(\mathbb{R}^d \backslash \{0\})$ \; distribution not define in $0$.\\
+\begin{itemize}
+\item $sd(v) \begin{color}{purple} < d \; \Rightarrow \; \exists! \end{color}$ extension $\tilde{v} \in \mathcal{D}^{\prime} (\mathbb{R}^d)$ of $v$: $sd(\tilde{v}) = sd(v)$. 
+\item $sd(v) \begin{color}{purple} \geq d \; \Rightarrow \; \exists \end{color}$ extensions $\tilde{v} \in \mathcal{D}^{\prime} (\mathbb{R}^d)$ of $v$: $sd(\tilde{v}) = sd(v)$,
+uniquely defined on a finite set of test functions.
+\end{itemize}
+\end{footnotesize}
+\end{thm}
+\vspace{-5mm}
+\begin{block}{\bf \color{purple} Goal}
+\begin{footnotesize}
+Using the \begin{color}{green!60!black} \textbf{analytic regularisation} \end{color}, develop \begin{color}{green!60!black} \textbf{a way to compute} \end{color}these extended distributions in \begin{color}{green!60!black} \textbf{curved spacetime} \end{color}. \\
+\vspace{1mm}
+\begin{color}{green!60!black} \emph{Analytic regularisation} \end{color}, e.g. regularise $\Delta_F(x,y)^{n+\lambda}$, \; $n\in\mathbb{N}, \lambda\in\mathbb{C}$ \\
+\vspace{-3mm}
+\begin{center} \begin{color}{purple} $\tilde{\Delta}_F(x,y)^n = \underset{\lambda \to 0}{\lim} \Delta_{F}(x,y)^{n+\lambda} \; - \; (poles)$. \end{color} \end{center}
+\end{footnotesize}
+\end{block}
+\end{frame}
+
+\subsection{Quantum gauge models on noncommutative 3-d space}  
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \emph{\small{Quantum gauge models on noncommutative 3-d space}}}
+\begin{block}{The noncommutative algebra $\mathbb{R}^3_\lambda$, \; \cite{PJC2013}}
+\begin{footnotesize}
+$\mathbb{R}^3_\lambda$ is a Poisson algebra of function on $\mathbb{R}^3$ endowed with the Wick-Voros product, \\
+\vspace{-4mm}
+\begin{center} 
+$\phi \star \psi (x) = exp \left[ \frac{\lambda}{2} ( \delta_{\mu \nu} x_0 + i \epsilon_{\mu \nu \rho} x_\rho ) \frac{\partial}{\partial y_\mu} \frac{\partial}{\partial z_\nu} \right] \phi(y) \psi(z) \big|_{y=z=x}$, 
+\end{center}
+\vspace{-2mm}
+with the coordinate functions $x_\mu$, \; $[x_\mu , x_\nu ]_{\star} = i \lambda \epsilon_{\mu \nu \rho} x_{\rho}$, \; \begin{tiny}$(\mu = 1,2,3)$\end{tiny}.
+\end{footnotesize}
+\end{block}
+\vspace{-2mm}
+\begin{block}{Gauge action, \;\cite{APJC2013}}
+\begin{scriptsize}
+\begin{color}{purple} The vector fields \end{color}are the derivations of the algebra $\mathbb{R}^3_\lambda$,\\
+$Der(\mathbb{R}^3_\lambda) = \big\{ D_\mu = \frac{i}{\kappa^2} [x_\mu,.], \; \mu = 1,2,3 \big\}$.\\
+\begin{color}{purple} Connection \end{color}, linear map $\nabla: \mathbb{R}^3_\lambda \times Der(\mathbb{R}^3_\lambda) \to \mathbb{R}^3_\lambda$, $\; \nabla_{D_\mu} = D_\mu + A_\mu $, \; with $\; \; A_\mu = \nabla_{D_\mu} (\mathbb{I})$, and $A^{cov}_{\mu} = A_\mu + \frac{i}{\kappa^2} x_\mu$. \\
+\begin{color}{purple} Curvature \end{color} (of $\nabla$), linear map $F: \mathbb{R}^3_\lambda \to \mathbb{R}^3_\lambda$, $\; F_{\mu \nu} = (D_{\mu} A_{\nu}  -  D_{\nu} A_{\mu}) + [A_{\mu},A_{\nu}] + \frac{\lambda }{\kappa^{2}} \epsilon_{\mu \nu \rho} A_{\rho}$. \\
+\begin{color}{purple} Action \end{color}(massless), $S_{cl} = Tr\left[ F_{\mu \nu}^\dagger F_{\mu \nu} + \gamma \epsilon_{\mu \nu \rho} \big( A^{cov}_{\mu} F_{\nu \rho} + \zeta A^{cov}_{\mu} A^{cov}_{\nu} A^{cov}_{\rho} \big) + \mu A^{cov}_{\mu} A^{cov}_{\mu} \right]$ \\
+(\begin{color}{green!60!black}vacuum $A_\mu =0$\end{color}).
+\end{scriptsize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} 
+\begin{tiny}
+A. Géré, P. Vitale, and J.-C. Wallet. \emph{Quantum gauge models on noncommutative 3-d space}. \textbf{(2013)} \cite{APJC2013}
+\end{tiny}
+}
+\begin{block}{Gauge fixed action}
+\vspace{-6mm}
+\begin{scriptsize}
+\begin{eqnarray*}
+S &=& S_{free} + S_{int} \\
+S_{free} &=& Tr \left( A_\mu \big[ - 2 \delta_{\mu \nu} D^2  \big] A_\nu - \overline{c} D^2 c \right) \\
+S_{int}^{3} &=& Tr\left(4i A_\mu A_\nu (D_\mu A_\nu) - 4i A_\mu A_\nu (D_\nu A_\mu) - \frac{8i\lambda}{3\kappa^2} \epsilon_{\mu \nu \rho} A_\mu A_\nu A_\rho - i ( D_\mu \overline{c} ) [A_\mu ,c] \right)
+\end{eqnarray*}
+\end{scriptsize}
+\end{block}
+\vspace{-8mm}
+\begin{columns}
+\begin{column}{.40\textwidth}
+\begin{block}{One point function}
+\vspace{-7mm}
+\begin{figure}[h!]
+%\includegraphics[scale=0.8]{./picture1.jpg}
+% picture1.jpg: 638x301 pixel, 299dpi, 5.42x2.56 cm, bb=0 0 154 72
+\end{figure}
+\end{block}
+\end{column}
+\hfill
+\begin{column}{.60\textwidth}
+\begin{block}{Conclusion}
+\begin{scriptsize}
+Classical \begin{color}{purple}vacuum not stable \end{color}against the quantum fluctuation.\\
+We cannot keep the \begin{color}{purple} masslessness\end{color} imposed at classical level.\\
+\begin{color}{green!60!black} No infrared divergence.\end{color}
+\end{scriptsize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Courses attended}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \emph{\small{Courses attended}}}
+\begin{block}{\bf Seminar on the Weyl quantization} 
+\href{http://www.dima.unige.it/~bartocci/}{Prof. Claudio Bartocci} and \href{http://www.pinamonti.eu/}{Prof. Nicola Pinamonti}.\\
+\cite{Binz2004} 
+\end{block}
+\vspace{8mm}
+\begin{block}{\bf Seminar on representation theory} 
+\href{http://anarm.dima.unige.it/genova2013/}{Workshop on Applied Harmonic Analysis - Genova, sept. 2013}. \\
+\href{http://www.dima.unige.it/~demari/}{Prof. Filippo De Mari} and \href{http://www.dima.unige.it/~devito/}{Prof. Ernesto De Vito}. \\
+\cite{Varada1984} 
+\end{block}
+\end{frame}
+
+\section{Scientific activities}
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \emph{\small{Scientific activities}}}
+\scriptsize
+\begin{columns}
+\begin{column}{.76\textwidth}
+\quad \textbf{Workshop - Foundations and Constructive Aspects of QFT} \\
+University of \href{http://www2.math.uni-wuppertal.de/~schenkel/LQP32/LQP32.html}{Wuppertal}, \\
+Germany, May 31 - June 1, 2013 \\
+Financial support from the University of Wuppertal. \\
+\vspace{6mm}
+\quad \textbf{Summer Graduate School - \href{http://www.msri.org/summer_schools/718}{Mathematical General Relativity}} \\
+\href{http://www.altamatematica.it/MathGenRelativity/}{Cortona}, Italy, July 29 - August 9, 2013 \\
+Granted full support for accomodation and board. \\
+\vspace{6mm}
+\quad \textbf{Workshop - Noncommutative Field Theory and Gravity} \\
+\href{http://www.physics.ntua.gr/corfu2013/nc.html}{Corfu}, Greece, September 8 - 15, 2013 \\
+Financial support from the \href{http://www.iky.gr/en/}{State Scholarships Foundation} and the University of Genova.
+\end{column}
+\hfill
+\begin{column}{.20\textwidth}
+\begin{figure}[h]
+\raisebox{0cm}{\includegraphics[scale=0.2]{./fig_wuppertal.JPG}} \\
+% LogoWuppertal.JPG: 210x104 pixel, 72dpi, 7.41x3.67 cm, bb=0 0 210 104
+\raisebox{-0.8cm}{\includegraphics[scale=0.05]{./fig_clay.JPG}} \\
+% ClayLogo.JPG: 1493x484 pixel, 96dpi, 39.50x12.81 cm, bb=0 0 1120 363
+\raisebox{-0.8cm}{\includegraphics[scale=0.08]{./fig_Indam.JPG}} \\
+% IndamLogo.JPG: 600x275 pixel, 100dpi, 15.24x6.99 cm, bb=0 0 432 198
+\raisebox{-0.6cm}{\includegraphics[scale=0.2]{./fig_msri.JPG}} \\
+% MsriLogobis.JPG: 200x49 pixel, 72dpi, 7.06x1.73 cm, bb=0 0 200 49
+\raisebox{-1.2cm}{\includegraphics[scale=0.6]{./fig_eisa.JPG}} \\
+% EisaLogo.JPG: 116x100 pixel, 159dpi, 1.85x1.60 cm, bb=0 0 53 45
+\raisebox{-0.8cm}{\includegraphics[scale=0.15]{./fig_Iky.JPG}}
+% LogoIky.JPG: 451x115 pixel, 72dpi, 15.91x4.06 cm, bb=0 0 451 115
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{References} 
+
+\begin{frame}
+\frametitle{\LogoUnivGenova \hspace{\stretch{1}} \emph{\small{References}}}
+\renewcommand{\section}[2]{}
+\vspace{-2mm}
+\begin{tiny}
+\begin{multicols}{2}
+%\bibliography{biblio.bib}
+\end{multicols}
+\end{tiny}
+%\bibliographystyle{ieeetr}
+%\bibliographystyle{plain}
+%\bibliographystyle{abbrv}
+%\bibliographystyle{acm}
+%\bibliographystyle{unsrt}
+\bibliographystyle{alpha}
+%\bibliographystyle{apalike}
+%\bibliographystyle{siam}
+\end{frame}
+
+\end{document}

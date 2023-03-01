@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {english}
+\select@language {english}
+\beamer@sectionintoc {1}{Intro.}{2}{0}{1}
+\beamer@sectionintoc {2}{pAQFT}{5}{0}{2}
+\beamer@sectionintoc {3}{Dim. reg. on CST}{27}{0}{3}
+\beamer@sectionintoc {4}{Appli. to FLWR}{36}{0}{4}
+\beamer@sectionintoc {5}{Conclu.}{40}{0}{5}

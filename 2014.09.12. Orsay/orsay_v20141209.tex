@@ -1,0 +1,2045 @@
+%============================================================================%
+% Antoine Gé́ré (gereantoine@gmail.com). 
+%============================================================================%                                                     
+ 
+%-- CLASS ------------------------------------------------------------------%
+
+\documentclass[9pt]{beamer} 
+
+\pdfoutput=1 
+
+\makeatletter 
+
+%-- PACKAGES ----------------------------------------------------------------%
+
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsxtra}
+\usepackage{array} 
+
+\usepackage[english]{babel} 
+
+\usepackage{cancel}
+\usepackage{color}
+
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc} 
+
+\usepackage{geometry} 
+\usepackage{graphicx} 
+
+\usepackage{hyperref} 
+
+\usepackage[utf8]{inputenc} 
+
+\usepackage{letltxmacro}
+\usepackage{lmodern}
+
+\usepackage{manfnt}
+\usepackage{multicol} 
+
+\usepackage[numbers,sort]{natbib}
+
+\usepackage{pgf}
+
+\usepackage{setspace} 
+
+\usepackage{tikz}
+
+\usepackage{url}
+ 
+\usepackage{wasysym}
+\usepackage{wrapfig}
+
+\usepackage{xcolor}
+
+%-- THEME -------------------------------------------------------------------%
+
+\mode<presentation>
+{
+
+  %== NAVIGATION SYMBOLS ======================================================%    
+
+  \setbeamertemplate{navigation symbols}{}
+  
+  %== TITLE PAGE ==============================================================%    
+
+  %\newcommand\subtitle[1]{\def\insertsubtitle{#1}}
+  %\subtitle{}
+
+  \newcommand\coauthor[1]{\def\insertcoauthor{#1}}
+  \coauthor{}
+
+  \newcommand\conference[1]{\def\insertconference{#1}}
+  \conference{}
+
+  \newcommand\shortconference[1]{\def\insertshortconference{#1}}
+  \shortconference{}
+
+  \newcommand\paper[1]{\def\insertpaper{#1}}
+  \paper{}
+
+  \newcommand\LogoUniv[1]{\def\insertLogoUniv{#1}}
+  \paper{}
+  
+  \newcommand\TitlePic[1]{\def\insertTitlePic{#1}}
+  \paper{}
+
+  \pgfdeclareverticalshading[title page.bg]{beamer@titleshade}{\paperwidth}{%
+    color(0pt)=(black!30!white);
+    color(3pt)=(black!60!white);
+    color(3pt)=(title page.bg);
+    color(126pt)=(title page.bg);
+    color(126pt)=(black!60!white);
+    color(129pt)=(black!30!white)}
+  
+  \defbeamertemplate*{title page}{gottingen14}[1][]
+  {%
+    \hbox{%
+      %
+      \leavevmode%
+      \advance\beamer@leftmargin by -12bp%
+      \advance\beamer@rightmargin by -12bp%
+      \beamer@tempdim=\textwidth%
+      \advance\beamer@tempdim by \beamer@leftmargin%
+      \advance\beamer@tempdim by \beamer@rightmargin%
+      \hskip-\Gm@lmargin%
+      %
+      \hbox{%
+	\setbox%
+	\beamer@tempbox=\hbox{%
+	%
+	\begin{minipage}[b]{\paperwidth}%
+	  \vbox{}%
+	  \leavevmode%
+	  \center{%
+	    {\usebeamerfont{title}\inserttitle} \\[1pt]
+	    {\usebeamerfont{subtitle}\insertsubtitle} \\[4pt]%
+	    {\usebeamerfont{author}\color{black}\insertauthor}\\[1pt]%
+	    %\insertLogoUniv
+	    {\usebeamerfont{institute}\color{black}\insertinstitute}\\[-2pt]%
+	    {\usebeamerfont{conference}\color{black}\insertconference, \insertdate}\\[1pt]%
+	    {\usebeamerfont{coauthor}\color{black} joint work with \insertcoauthor}\\[-3pt]%
+	    {\usebeamerfont{paper}\color{black}\insertpaper}%
+	  }%
+	  \strut%
+	  \par%
+	  \vbox{}%
+	\end{minipage}%
+	}%
+	%
+	\beamer@tempdim=\ht\beamer@tempbox%
+	\advance\beamer@tempdim by 115pt%
+	%
+	\begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+	  \pgfsetfillopacity{0.8}
+	  \pgftext[left,base]{\pgfuseshading{beamer@titleshade}}
+	\end{pgfpicture}
+	%
+	\hskip-\paperwidth%
+	\box\beamer@tempbox%
+      }%
+    }%
+  }
+
+  %== TEMPLATE ================================================================% 
+ 
+  \setbeamertemplate{title page}[gottingen14][colsep=-4bp,rounded=false]
+  \setbeamertemplate{sections/subsections in toc}[ball]
+  \setbeamertemplate{items}[ball]
+  \setbeamertemplate{blocks}[default]
+  \setbeamertemplate{part page}[default][colsep=-4bp,rounded=false]
+    
+  %== COLOR ===================================================================% 
+  
+  \setbeamercolor{title page}{bg=white!96!black,fg=red!62!black}
+  \setbeamercolor{frametitle}{bg=white,fg=red!60!black}
+  \setbeamercolor{subsection in head/foot}{bg=white!95!black,fg=red!60!black}
+  \setbeamercolor{author in head/foot}{bg=white,fg=red!60!black}
+  \setbeamercolor{title in head/foot}{bg=white,fg=red!60!black}
+  \setbeamercolor{normal text}{black}
+  \setbeamercolor{headline@color}{bg=black,fg=green}
+  \setbeamercolor{block title}{bg=black!20!white,fg=red!60!black}
+  \setbeamercolor{block body}{bg=black!20!white,fg=black}
+  \setbeamercolor{block body alerted}{bg=black!40!white,fg=black}
+  \setbeamercolor{block title alerted}{bg=black!40!white,fg=black}
+  \setbeamercolor{block body example}{bg=black!10!white,fg=black}
+  \setbeamercolor{block title example}{bg=black!10!white,fg=red!60!black}
+  \setbeamercolor{button}{bg=black!50!white,fg=white}
+  \setbeamercolor{sidebar}{bg=black,fg=white}
+  \setbeamercolor{palette sidebar primary}{bg=black,fg=white}
+  \setbeamercolor{palette sidebar secondary}{bg=black,fg=white}
+  \setbeamercolor{palette sidebar tertiary}{bg=black,fg=white}
+  \setbeamercolor{palette sidebar quaternary}{bg=black,fg=white}
+  \setbeamercolor{titlelike}{bg=green,fg=white}
+  \setbeamercolor{separation line}{white}
+  \setbeamercolor{fine separation line}{white}
+
+  %== FONT ====================================================================% 
+  
+  \setbeamerfont{frametitle}{size={\normalsize},series={\bf}}
+  \setbeamerfont{block title}{size={},series={}}
+  \setbeamerfont{block body}{size={},series={}}
+  \setbeamerfont{block title example}{size={},series={}}
+  \setbeamerfont{block body example}{size={},series={}}
+  \setbeamerfont{title}{size={\LARGE},series={\bf}}
+  \setbeamerfont{subtitle}{size={\large},series={\bf}}
+  \setbeamerfont{author}{size={\Large},series={\bf}}
+  \setbeamerfont{institute}{size={\normalsize},series={}}
+  \setbeamerfont{conference}{size={\large},series={}}
+  \setbeamerfont{date}{size={\normalsize},series={}}
+  \setbeamerfont{coauthor}{size={\normalsize},series={\bf}}
+  \setbeamerfont{paper}{size={\normalsize},series={\tt}}
+
+  %== COVERED =================================================================% 
+  
+  \setbeamercovered{transparent}
+    
+  %== SHADOWS =================================================================% 
+
+  \AtBeginDocument{%
+    \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+      color(0pt)=(bg);%
+      color(4pt)=(black!50!bg)}%
+    \pgfdeclareverticalshading{beamer@bottomshade}{\paperwidth}{%
+      color(0pt)=(black!50!bg);%
+      color(4pt)=(bg)}%
+    \pgfdeclarehorizontalshading{beamer@rightshade}{\paperwidth}{%
+      color(0pt)=(black!50!bg);%
+      color(4pt)=(bg)}%
+    \pgfdeclarehorizontalshading{beamer@leftshade}{\paperwidth}{%
+      color(0pt)=(black!50!bg);%
+      color(4pt)=(bg)}%
+  }%
+
+  %== FRAME TITLE =============================================================% 
+
+    \pgfdeclareverticalshading[frametitle.bg]{beamer@frametitleshade}{\paperwidth}
+    {%
+      color(0pt)=(frametitle.bg);
+      color(36pt)=(frametitle.bg)
+    }%
+
+    \defbeamertemplate*{frametitle}{nosplit theme}
+    {%
+      \nointerlineskip%
+      \vskip-2.5pt%
+      \hbox{\leavevmode
+        \advance\beamer@leftmargin by -12bp%
+        \advance\beamer@rightmargin by -12bp%
+        \beamer@tempdim=\textwidth%
+        \advance\beamer@tempdim by \beamer@leftmargin%
+        \advance\beamer@tempdim by \beamer@rightmargin%
+        \hskip-\Gm@lmargin\hbox{%
+          \setbox\beamer@tempbox=\hbox{
+          \begin{minipage}[b]{\paperwidth}%
+              \vbox{}%
+              \vskip0ex%
+              \leftskip0.3cm%
+              \rightskip0.3cm plus1fil\leavevmode
+              \insertframetitle%
+              \ifx\insertframesubtitle\@empty%
+                \strut\par%
+              \else
+                \par{\usebeamerfont*{framesubtitle}{\insertframesubtitle}\strut\par}%
+              \fi%
+              \vskip5pt%
+              \nointerlineskip
+              \vbox{}%
+              \end{minipage}}%
+          \beamer@tempdim=\ht\beamer@tempbox%
+          \advance\beamer@tempdim by 2pt%
+          \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+            \usebeamercolor{frametitle}
+            \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+            \pgfusepath{clip}
+            \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+          \end{pgfpicture}
+          \hskip-\paperwidth%
+          \box\beamer@tempbox%
+        }%
+        \hskip-\Gm@rmargin%
+      }%
+      \nointerlineskip
+        \vskip-0.2pt
+        \hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin}
+        \vskip-2pt
+    }
+
+  %== FOOTLINE ================================================================%    
+
+  \newcommand{\backupbegin}{
+    \newcounter{framenumberappendix}
+    \setcounter{framenumberappendix}{\value{framenumber}}
+  }
+
+  \newcommand{\backupend}{
+    \addtocounter{framenumberappendix}{-\value{framenumber}}
+    \addtocounter{framenumber}{\value{framenumberappendix}} 
+  }
+
+  \defbeamertemplate*{footline}{nosplit theme}{%
+    \vskip1pt
+    \pgfuseshading{beamer@bottomshade}
+    \vskip1.5pt
+    \leavevmode%
+    \hbox{%
+      \begin{beamercolorbox}[wd=.2\paperwidth,center]{footline@color}%
+	\usebeamerfont{author in head/foot} \insertauthor
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.2\paperwidth,center]{footline@color}%
+	\usebeamerfont{institute in head/foot} \insertshortconference
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.5\paperwidth,center]{footline@color}%
+	\usebeamerfont{title in head/foot} \inserttitle 
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.1\paperwidth,center]{footline@color}%
+	\insertframenumber{} / \inserttotalframenumber 
+      \end{beamercolorbox}%
+    }%
+    \vskip0.5pt%
+  }%
+%
+}%
+%
+\mode%
+%
+<all>
+
+%-- COMMANDS ----------------------------------------------------------------%
+
+\newcommand{\bra}[1]{\langle{#1}|} % Define the Bra.       
+\newcommand{\ket}[1]{|{#1}\rangle} % Define the Ket.
+
+\newcommand{\Bracket}[2]{\langle #1 | #2 \rangle} % Define the bracket
+\newcommand{\PB}[1]{\left\{{#1}\right\}} % Define the Poisson bracket.
+\newcommand{\Comut}[1]{\left[ #1 \right]} % Define the commutator.
+
+\newcommand{\Tdot}{\cdot_\Tsf} % Define the symbol for the general time ordering product.
+\newcommand{\TdotH}{\cdot_{\Tsf_\Hsf}} % Define the symbol for the time ordering product defined for H.
+
+\newcommand{\Smearip}[1]{\left\langle #1 \right\rangle} % Define the smearing product.
+
+\newcommand{\abs}[1]{\left|{#1}\right|} % Define the absolute value.
+\newcommand{\norm}[1]{\left|{#1}\right|} % Definie the norm.
+\newcommand{\dmu}[1]{\dsf\mu_{#1}} % Definie the symbol for the measure.
+
+\newcommand{\expo}{\mathsf{exp}} % Define the exponential exp.
+\newcommand{\E}{\mathsf{e}} % Define the exponential e.
+\newcommand{\logar}{\mathsf{log}} % Define the logarithm.
+\renewcommand{\sin}{\mathsf{sin}} % Redefine the sinus.
+\renewcommand{\cos}{\mathsf{cos}} % Redefine the cosinus.
+\renewcommand{\tan}{\mathsf{tan}} % Redefine the tangent.
+\renewcommand{\arcsin}{\mathsf{arcsin}} % Redefine the arcsinus.
+\renewcommand{\arccos}{\mathsf{arccos}} % Redefine the arccosinus.
+\renewcommand{\arctan}{\mathsf{arctan}} % Redefine the arctangent.
+
+\renewcommand{\inf}{\mathsf{inf}} % Redefine the inf.
+\renewcommand{\sup}{\mathsf{sup}} % Redefine the sup.
+\renewcommand{\deg}{\mathsf{deg}} % Redefine the degree of a polynom.
+
+\renewcommand{\arg}{\mathsf{arg}} % Redefine the argument.
+\newcommand{\Arg}{\mathsf{Arg}} % Redefine the principal value of the\cite[p.646]{BF2000} argument.
+
+\renewcommand{\Re}{\mathsf{Re}} % Define the real part.
+\renewcommand{\Im}{\mathsf{Im}} % Define the imaginary part.
+
+\newcommand{\pp}{\mathsf{pp}} % Define the principal part.
+\newcommand{\rp}{\mathsf{rp}} % Define the regular part.
+
+\newcommand{\pv}{\mathsf{pv}} % Define the principal value.
+
+\renewcommand{\det}{\mathsf{det}} % Redefine the determinant.
+\newcommand{\tr}{\mathsf{Tr}} % Define the trace.
+
+\newcommand{\cg}[6]{\left(\begin{array}{cc|c} #1 & #3 & #5 \\ #2 & #4 & #6 \end{array}\right)} % Define the symbole for Clebsch Gordan coefficients.
+\newcommand{\wig}[6]{\left(\begin{array}{ccc} #1 & #3 & #5 \\ #2 & #4 & #6 \end{array}\right)} % Define the symbole for the 3-j (Wigner symbols).
+
+\newcommand{\Wick}[1]{:\!{#1}\!:} % Define the wick product.
+
+\newcommand{\WF}{\mathsf{WF}} % Define the wave front set.
+\newcommand{\supp}{\mathsf{supp}} % Define the support.
+\newcommand{\Smatrix}{\mathbf{\mathsf{S}}}% Define the S matrix.
+
+\newcommand{\sd}{\mathsf{sd}} % Define the scaling degree.
+\renewcommand{\div}{\mathsf{div}} % Redefine the divergence degree.
+
+\newcommand{\EndDfn}{\hfill\ensuremath{\blacktriangleright}} % Define the symbol for the end of definitions.
+\newcommand{\EndLem}{\hfill\ensuremath{\rhd}} % Define the symbol for the end of lemmas.
+\newcommand{\EndThm}{\hfill\ensuremath{\rhd}} % Define the symbol for the end of theorems.
+\newcommand{\EndDemo}{\hfill\ensuremath{\blacksquare}} % Define the symbol for the end of proofs.
+\newcommand{\EndEx}{\hfill\ensuremath{\circ}} % Define the symbol for the end of examples.
+\newcommand{\EndAxiom}{\hfill\ensuremath{\bullet}} % Define the symbol for the end of list of axioms.
+\newcommand{\EndCorol}{\hfill\ensuremath{\rhd}} % Define the symbol for the end of corollaries.
+\newcommand{\EndProp}{\hfill\ensuremath{\rhd}} % Define the symbol for the end of properties.
+
+\newcommand{\diff}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}} % Define the derivatives.
+\newcommand{\partdiff}[2]{\frac{\partial#1}{\partial#2}} %  Define the partial derivatives.
+
+\newcommand{\Retsol}{\Gsf_{\mathsf{r}}} % Define the retarded fundamental solution.
+\newcommand{\Advsol}{\Gsf_{\mathsf{a}}} % Define the advanced fundamental solution.
+\newcommand{\DisDelta}{\mathsf{\Delta}} % Define the symbol to the the bidistribution associated to the causal propagator.
+
+\newcommand{\CoLine}{\oslash} % Define the symbol for the line complement.
+\newcommand{\CoVertex}{\odot} % Define the symbol for the vertex complement.
+\newcommand{\Part}{\mathsf{Part}} % Define the symbol for the partition.
+
+\newcommand{\lc}{\Vcal} % Define the symbol for the light cone.
+
+\newcommand{\citebeam}[1]{\textit{\textcolor{black!60!white}{[#1]}}} % Define cite for beamer
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}} % Define circled numbers.
+
+%-- ALPHABET IN mathcal MODE ------------------------------------------------%
+
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Bcal}{\mathcal{B}}
+\newcommand{\Ccal}{\mathcal{C}}
+\newcommand{\Dcal}{\mathcal{D}}
+\newcommand{\Ecal}{\mathcal{E}}
+\newcommand{\Fcal}{\mathcal{F}}
+\newcommand{\Gcal}{\mathcal{G}}
+\newcommand{\Hcal}{\mathcal{H}}
+\newcommand{\Ical}{\mathcal{I}}
+\newcommand{\Jcal}{\mathcal{J}}
+\newcommand{\Kcal}{\mathcal{K}}
+\newcommand{\Lcal}{\mathcal{L}}
+\newcommand{\Mcal}{\mathcal{M}}
+\newcommand{\Ncal}{\mathcal{N}}
+\newcommand{\Ocal}{\mathcal{O}}
+\newcommand{\Pcal}{\mathcal{P}}
+\newcommand{\Qcal}{\mathcal{Q}}
+\newcommand{\Rcal}{\mathcal{R}}
+\newcommand{\Scal}{\mathcal{S}}
+\newcommand{\Tcal}{\mathcal{T}}
+\newcommand{\Ucal}{\mathcal{U}}
+\newcommand{\Vcal}{\mathcal{V}}
+\newcommand{\Wcal}{\mathcal{W}}
+\newcommand{\Xcal}{\mathcal{X}}
+\newcommand{\Ycal}{\mathcal{Y}}
+\newcommand{\Zcal}{\mathcal{Z}}
+
+%-- ALPHABET IN mathbb MODE ------------------------------------------------%
+
+\newcommand{\Abb}{\mathbb{A}}
+\newcommand{\Bmbb}{\mathbb{B}}
+\newcommand{\Cbb}{\mathbb{C}}
+\newcommand{\Dbb}{\mathbb{D}}
+\newcommand{\Ebb}{\mathbb{E}}
+\newcommand{\Fbb}{\mathbb{F}}
+\newcommand{\Gbb}{\mathbb{G}}
+\newcommand{\Hbb}{\mathbb{H}}
+\newcommand{\Ibb}{\mathbb{I}}
+\newcommand{\Jbb}{\mathbb{J}}
+\newcommand{\Kbb}{\mathbb{K}}
+\newcommand{\Lbb}{\mathbb{L}}
+\newcommand{\Mbb}{\mathbb{M}}
+\newcommand{\Nbb}{\mathbb{N}}
+\newcommand{\Obb}{\mathbb{O}}
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\Qbb}{\mathbb{Q}}
+\newcommand{\Rbb}{\mathbb{R}}
+\newcommand{\Sbb}{\mathbb{S}}
+\newcommand{\Tbb}{\mathbb{T}}
+\newcommand{\Ubb}{\mathbb{U}}
+\newcommand{\Vbb}{\mathbb{V}}
+\newcommand{\Wbb}{\mathbb{W}}
+\newcommand{\Xbb}{\mathbb{X}}
+\newcommand{\Ybb}{\mathbb{Y}}
+\newcommand{\Zbb}{\mathbb{Z}}
+
+%-- ALPHABET IN mathfrak MODE ----------------------------------------------%
+
+\newcommand{\Arak}{\mathfrak{A}}
+\newcommand{\Brak}{\mathfrak{B}}
+\newcommand{\Crak}{\mathfrak{C}}
+\newcommand{\Drak}{\mathfrak{D}}
+\newcommand{\Erak}{\mathfrak{E}}
+\newcommand{\Frak}{\mathfrak{F}}
+\newcommand{\Grak}{\mathfrak{G}}
+\newcommand{\Hrak}{\mathfrak{H}}
+\newcommand{\Irak}{\mathfrak{I}}
+\newcommand{\Jrak}{\mathfrak{J}}
+\newcommand{\Krak}{\mathfrak{K}}
+\newcommand{\Lrak}{\mathfrak{L}}
+\newcommand{\Mrak}{\mathfrak{M}}
+\newcommand{\Nrak}{\mathfrak{N}}
+\newcommand{\Orak}{\mathfrak{O}}
+\newcommand{\Prak}{\mathfrak{P}}
+\newcommand{\Qrak}{\mathfrak{Q}}
+\newcommand{\Rrak}{\mathfrak{R}}
+\newcommand{\Srak}{\mathfrak{S}}
+\newcommand{\Trak}{\mathfrak{T}}
+\newcommand{\Urak}{\mathfrak{U}}
+\newcommand{\Vrak}{\mathfrak{V}}
+\newcommand{\Wrak}{\mathfrak{W}}
+\newcommand{\Xrak}{\mathfrak{X}}
+\newcommand{\Yrak}{\mathfrak{Y}}
+\newcommand{\Zrak}{\mathfrak{Z}}
+
+%-- ALPHABET IN mathsf MODE ----------------------------------------------%
+
+\newcommand{\Asf}{\mathsf{A}}
+\newcommand{\Bsf}{\mathsf{B}}
+\newcommand{\Csf}{\mathsf{C}}
+\newcommand{\Dsf}{\mathsf{D}}
+\newcommand{\Esf}{\mathsf{E}}
+\newcommand{\Fsf}{\mathsf{F}}
+\newcommand{\Gsf}{\mathsf{G}}
+\newcommand{\Hsf}{\mathsf{H}}
+\newcommand{\Isf}{\mathsf{I}}
+\newcommand{\Jsf}{\mathsf{J}}
+\newcommand{\Ksf}{\mathsf{K}}
+\newcommand{\Lsf}{\mathsf{L}}
+\newcommand{\Msf}{\mathsf{M}}
+\newcommand{\Nsf}{\mathsf{N}}
+\newcommand{\Osf}{\mathsf{O}}
+\newcommand{\Psf}{\mathsf{P}}
+\newcommand{\Qsf}{\mathsf{Q}}
+\newcommand{\Rsf}{\mathsf{R}}
+\newcommand{\Ssf}{\mathsf{S}}
+\newcommand{\Tsf}{\mathsf{T}}
+\newcommand{\Usf}{\mathsf{U}}
+\newcommand{\Vsf}{\mathsf{V}}
+\newcommand{\Wsf}{\mathsf{W}}
+\newcommand{\Xsf}{\mathsf{X}}
+\newcommand{\Ysf}{\mathsf{Y}}
+\newcommand{\Zsf}{\mathsf{Z}}
+
+\newcommand{\asf}{\mathsf{a}}
+\newcommand{\bsf}{\mathsf{b}}
+\newcommand{\csf}{\mathsf{c}}
+\newcommand{\dsf}{\mathsf{d}}
+\newcommand{\esf}{\mathsf{e}}
+\newcommand{\fsf}{\mathsf{f}}
+\newcommand{\gsf}{\mathsf{g}}
+\newcommand{\hsf}{\mathsf{h}}
+\newcommand{\isf}{\mathsf{i}}
+\newcommand{\jsf}{\mathsf{j}}
+\newcommand{\ksf}{\mathsf{k}}
+\newcommand{\lsf}{\mathsf{l}}
+\newcommand{\msf}{\mathsf{m}}
+\newcommand{\nsf}{\mathsf{n}}
+\newcommand{\osf}{\mathsf{o}}
+\newcommand{\psf}{\mathsf{p}}
+\newcommand{\qsf}{\mathsf{q}}
+\newcommand{\rsf}{\mathsf{r}}
+\newcommand{\ssf}{\mathsf{s}}
+\newcommand{\tsf}{\mathsf{t}}
+\newcommand{\usf}{\mathsf{u}}
+\newcommand{\vsf}{\mathsf{v}}
+\newcommand{\wsf}{\mathsf{w}}
+\newcommand{\xsf}{\mathsf{x}}
+\newcommand{\ysf}{\mathsf{y}}
+\newcommand{\zsf}{\mathsf{z}}
+
+%-- ALPHABET IN mathbf MODE ----------------------------------------------%
+
+\newcommand{\Abf}{\mathbf{A}}
+\newcommand{\Bbf}{\mathbf{B}}
+\newcommand{\Cbf}{\mathbf{C}}
+\newcommand{\Dbf}{\mathbf{D}}
+\newcommand{\Ebf}{\mathbf{E}}
+\newcommand{\Fbf}{\mathbf{F}}
+\newcommand{\Gbf}{\mathbf{G}}
+\newcommand{\Hbf}{\mathbf{H}}
+\newcommand{\Ibf}{\mathbf{I}}
+\newcommand{\Jbf}{\mathbf{J}}
+\newcommand{\Kbf}{\mathbf{K}}
+\newcommand{\Lbf}{\mathbf{L}}
+\newcommand{\Mbf}{\mathbf{M}}
+\newcommand{\Nbf}{\mathbf{N}}
+\newcommand{\Obf}{\mathbf{O}}
+\newcommand{\Pbf}{\mathbf{P}}
+\newcommand{\Qbf}{\mathbf{Q}}
+\newcommand{\Rbf}{\mathbf{R}}
+\newcommand{\Sbf}{\mathbf{S}}
+\newcommand{\Tbf}{\mathbf{T}}
+\newcommand{\Ubf}{\mathbf{U}}
+\newcommand{\Vbf}{\mathbf{V}}
+\newcommand{\Wbf}{\mathbf{W}}
+\newcommand{\Xbf}{\mathbf{X}}
+\newcommand{\Ybf}{\mathbf{Y}}
+\newcommand{\Zbf}{\mathbf{Z}}
+
+\newcommand{\abf}{\mathbf{a}}
+\newcommand{\bbf}{\mathbf{b}}
+\newcommand{\cbf}{\mathbf{c}}
+\newcommand{\dbf}{\mathbf{d}}
+\newcommand{\ebf}{\mathbf{e}}
+\newcommand{\fbf}{\mathbf{f}}
+\newcommand{\gbf}{\mathbf{g}}
+\newcommand{\hbf}{\mathbf{h}}
+\newcommand{\ibf}{\mathbf{i}}
+\newcommand{\jbf}{\mathbf{j}}
+\newcommand{\kbf}{\mathbf{k}}
+\newcommand{\lbf}{\mathbf{l}}
+\newcommand{\mbf}{\mathbf{m}}
+\newcommand{\nbf}{\mathbf{n}}
+\newcommand{\obf}{\mathbf{o}}
+\newcommand{\pbf}{\mathbf{p}}
+\newcommand{\qbf}{\mathbf{q}}
+\newcommand{\rbf}{\mathbf{r}}
+\newcommand{\sbf}{\mathbf{s}}
+\newcommand{\tbf}{\mathbf{t}}
+\newcommand{\ubf}{\mathbf{u}}
+\newcommand{\vbf}{\mathbf{v}}
+\newcommand{\wbf}{\mathbf{w}}
+\newcommand{\xbf}{\mathbf{x}}
+\newcommand{\ybf}{\mathbf{y}}
+\newcommand{\zbf}{\mathbf{z}}
+
+%-- THEOREM ENVIRONMENTS ---------------------------------------------------------%
+
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{corol}{Corollary}
+\newtheorem{demo}{Proof}
+\newtheorem{axiom}{Axiom}
+\newtheorem{axioms}{Axioms}
+
+\newtheorem{dfn}{Definition}
+\newtheorem{dfns}{Definitions}
+\newtheorem{rmk}{Remark}
+\newtheorem{rmks}{Remarks}
+\newtheorem{ex}{Example}
+\newtheorem{exs}{Examples}
+
+%-- LIST SETTINGS ----------------------------------------------------------------%
+
+\setlist[itemize]{%
+  align=left,
+  labelsep=*,
+  leftmargin=12pt,
+  topsep=4pt, 
+  itemsep=12pt,
+  label=$\bullet$
+}
+
+\setlist[description]{
+  leftmargin=12pt,
+  itemsep=6pt,
+  label=$\bullet$
+}
+
+\linespread{1.4}
+
+%-- HYPERREF ----------------------------------------------------------------%
+
+\hypersetup{     
+ unicode=false,      
+ pdftoolbar=true,    
+ pdfmenubar=true,    
+ pdffitwindow=true,  
+ pdfstartview={FitH},
+ pdftitle={lqp35-antoine},    
+ pdfauthor={Antoine Géré},     
+ pdfsubject={Mathematical Physics},   
+ pdfcreator={LaTeX},  
+ pdfproducer={pdfTex},
+ pdfkeywords={pertubative algebraic quantum qield Theory, dimensional regularisation.},  
+ pdfnewwindow=true,  
+ citecolor=darkcerulean,
+}
+
+%-- TIKZ LIBRARY ------------------------------------------------------------%
+
+\usetikzlibrary{decorations.pathmorphing,decorations.markings}
+
+%-- TITLE PAGE --------------------------------------------------------------%
+
+\title{Analytic regularisation on curved backgrounds}
+
+\subtitle{An analytic method}
+
+\author{\href{mailto:gere@dima.unige.it}{Antoine Géré}}
+
+\coauthor{\href{mailto:hack@dima.unige.it}{Thomas-Paul Hack} and \href{mailto:pinamont@dima.unige.it}{Nicola Pinamonti}}
+
+\date{December 11th, 2014}
+
+\institute{\href{http://www.unige.it/strutture/ou/staff/DIMA}{Università degli studi di Genova, Dipartimento di Matematica}}
+
+\conference{\href{http://www.th.u-psud.fr/rubrique.php3?id_rubrique=32}{LPT Orsay}}
+
+\shortconference{\href{http://www.th.u-psud.fr/}{LPT Orsay}}
+
+\paper{\href{http://arxiv.org/}{to appear soon on arXiv.org}}
+
+%============================================================================%
+\begin{document}
+%============================================================================%
+
+\selectlanguage{english}
+
+%----------------------------------------------------------------------------%
+
+{% 
+\setbeamertemplate{footline}{} 
+\setbeamertemplate{headline}{}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight]{fig_balbi}}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+}%
+
+%----------------------------------------------------------------------------%
+\section{Intro.} 
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Global picture}
+
+\vfill
+
+\textdbend \quad \textbf{QFT on CST} $\to$ difficulty : apparent \textbf{non locality} of quantum physics \  \\
+
+\textbf{Even worst} : ``traditional QFT'' \textbf{based on} several \textbf{non local concepts} \\
+
+\quad $\bullet$ \ vaccuum (defined as the state of lowest energy) \\
+\quad $\bullet$ \ particles (defined as irreducible representations of Poincaré group) \\
+\quad $\bullet$ \ \dots \\
+
+\vspace*{-12pt}
+
+\begin{block}{\vspace*{-3ex}}
+\vspace*{-10pt}
+\begin{center}
+Fomulation of QFT based entirely on local concepts \\
+$\leadsto$ \ \textbf{A}lgebraic \textbf{Q}uantum \textbf{F}ield \textbf{T}heory (AQFT) \\
+\end{center}
+\vspace*{-7pt}
+\end{block}
+
+\vfill
+
+we work at the \textbf{level} of the \textbf{algebra of observables} \\
+$\to$ \ relation to the \textbf{Hilbert space formalism} is done via \textbf{GNS construction} \\
+
+\vfill
+
+$\bullet$ \ \textbf{Quantization} : ``formal deformation'' (product as formal power series in $\hbar$) \\ 
+
+$\bullet$ \ \textbf{Interactions} : via the time ordered product
+
+\vspace*{-12pt}
+
+\begin{block}{\vspace*{-3ex}}
+\vspace*{-10pt}
+\begin{center}
+\textbf{Interacting theory} can be build by \textbf{perturbing} the \textbf{quantum free theory} !
+\end{center}
+\vspace*{-7pt}
+\end{block}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Motivation}
+  
+\begin{itemize}
+    
+\item pertubative algebraic quantum field theory (pAQFT) \\
+$\to$ \textbf{conceptually well known} \\
+\citebeam{Brunetti, Dütsch, Fredenhagen, Hollands, K\"ohler, Rejzner, Wald, ... $\sim$1996-2013} \\
+    
+\item in pAQFT on curved spacetime (CST), regularisation uses ideas of Epstein and Glaser \\
+$\to$ procedure \textbf{unconvenient for computations} \\
+\citebeam{Brunetti \& Fredenhagen 2000, Hollands \& Wald 2002, Dang 2013} \\
+    
+\item desire to use framework of pAQFT for \textbf{cosmological model} ! \\
+  
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{What I am going to talk about}
+  
+\begin{itemize}
+   
+\item \textbf{pAQFT} $\to$ in order to identify the regularisation problem! \\
+  
+\item a framework for a \textbf{dimensional regularisation} on CST \\
+$\to$ a general procedure more computationally friendly! \\
+   
+\item explicit computations on spatially flat Friedmann Lemaître Robertson Walker spacetimes \\
+$\to$ finally a \textbf{bit of practice}!
+   
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+\section{pAQFT}
+%----------------------------------------------------------------------------%
+
+{%
+%
+\setbeamertemplate{footline}{}% 
+\setbeamertemplate{headline}{}%
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight]{fig_paqft}}%
+\pgfsetfillopacity{0.8}%
+%
+\begin{frame}%
+\bf
+\vspace*{30pt}
+%
+\begin{exampleblock}{\vspace*{-3ex}}%
+%
+\begin{center}%
+%
+\Large Pertubative Algebraic Quantum Field Theory \\[10pt] on Curved Spacetime
+%
+\end{center}%
+%
+\end{exampleblock}%
+%
+\end{frame}
+%
+}%
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Physical input}
+  
+\begin{itemize}
+  
+\item $(\Mcal,\gsf)$ : \textbf{4 dimensional} spacetime \\[2pt]
+\qquad $\to$ \ globally hyperbolic Lorentzian manifold
+    
+\item $\Crak$ : \textbf{off shell} configuration space \\[2pt] 
+\qquad $\to$ \ real scalar field $\phi \in \Ccal^\infty(\Mcal,\Rbb)$
+        
+\item $\Fcal$: \textbf{space of observables}
+$
+\ \Fsf : \left\{
+\begin{array}{ccc}
+\Crak & \to & \Cbb \\
+\phi & \mapsto & \Fsf(\phi)
+\end{array}
+\right.
+$
+   
+\vspace*{16pt}
+   
+\textbf{Need to make restriction} to have good working properties \\[5pt]
+
+\qquad $\to$ \ \textbf{support} properties \\[3pt]
+ 
+\qquad $\to$ \ \textbf{regularity} properties
+
+\end{itemize}
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Skeleton of pAQFT}
+
+\vfill
+
+Our \textbf{theory} is \textbf{described by}
+\begin{eqnarray*}
+&& \Lcal \ = \ \Lcal_{free} \ + \ \Lcal_{int} \\
+e.g. && \Lcal \ = \ \left( \nabla \phi \nabla \phi + m^2 \phi^2 + \xi R \phi^2 \right) \ + \ \frac{\lambda}{4!} \ \phi^4 , \quad \phi \mbox{ real smooth map}.
+\end{eqnarray*}
+
+\vfill
+
+$\bullet$ \ \textbf{Free theory} \ $\to$ \ quantization well known \\
+\vspace*{-10pt}
+\begin{block}{\vspace*{-3ex}}
+\vspace*{-10pt}
+\begin{center}
+classical algebra, with \textbf{pointwise product} \\
+$\downarrow$ Quantization $\downarrow$ \\
+quantum algebra, with \textbf{new products} \\
+\end{center}
+\vspace*{-7pt}
+\end{block}
+\hspace*{8pt} powers of distribution appear !  \ $\Rightarrow$ \textbf{Not always well defined !} \\[2pt]
+\hspace*{8pt} we \textbf{perturb} the free theory to \textbf{build} the \textbf{interacting theory}
+
+\vfill
+
+$\bullet$ \ \textbf{Interacting theory} \\
+
+\hspace*{8pt} via the famous ``Bogoliubov's formula'' \\ 
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Free theory -- A first look}
+  
+\vfill  
+  
+($\Fcal_\mathsf{reg}$ : regular functionals)
+\vspace*{-27.5pt}
+\begin{equation*}
+\hspace*{40pt} \Fsf^\ast(\phi) = \int \dsf\mu_x \ \bar{f}(x) \ \phi(x) 
+\end{equation*}
+
+%\vfill  
+ 
+\vspace*{-8pt}
+
+\begin{block}{\center \vspace*{-14pt} Free theory}
+\vspace*{-6pt}
+\begin{center}
+% 
+\begin{tabular}{ccc}
+%
+\textbf{Classical level} & & \textbf{Quantum level} \\
+%
+$\Acal_\mathsf{cl} = \left( \Fcal_{\mathsf{reg}} \ , \ \cdot \right)$ & $\leftarrow$ ($\ast$ algebra) $\rightarrow$ & $\Acal_\hbar = \left( \Fcal_{\mathsf{reg}} \ , \ \star \right)$ 
+%
+\end{tabular}
+%
+\begin{equation*}
+(\Fsf \cdot \Gsf)(\phi) = \Fsf(\phi) \cdot \Gsf(\phi) 
+\end{equation*}
+%
+\begin{equation*}
+(F \star G)(\phi) = F(\phi) G(\phi) + \sum_{n=1}^\infty \frac{\hbar^n}{n!} \Smearip{F^{(n)}(\phi), \Delta^{\otimes n} G^{(n)}(\phi)} 
+\end{equation*}
+%
+\begin{equation*}
+\Fsf \star \Gsf \ \overset{\hbar \to 0}{\longrightarrow} \ \Fsf \cdot \Gsf
+\end{equation*}
+%
+\end{center}
+%
+\end{block}
+
+\vfill
+
+e.g. linear functionals (fields themself), 
+\begin{tabular}{lcl}
+in $\Acal_\mathsf{cl}$ : $\{F,G\} = \Delta(f,g)$ & and & in $\Acal_\hbar$ : $[F,G] = i \hbar \Delta(f,g)$ 
+\end{tabular}
+
+\vfill
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{GNS construction for $\ast$ algebra}
+\framesubtitle{Relation to the standard Hilbert space formalism}
+
+\vfill
+
+$\bullet$ \ Given a $\ast$ algebra $\Acal$, \\
+\hspace*{8pt} \textbf{a state} $\omega$ is a positive, normalised, linear functional on $\Acal$. \\
+
+\vfill
+  
+$\bullet$ \ Often the algebra of observables $\Acal$, cannot be equipped with a norm \\
+\hspace*{8pt} BUT we have unital $\ast$ algebra \\
+
+
+\vfill
+
+$\bullet$ \ \textbf{The GNS construction remains possible !} \\
+\hspace*{8pt} But in particular it is not garantee that selfadjoint elements of $\Acal$ are \hspace*{8pt} represented by selfadjoint Hilbert space operators ! \\
+\begin{center}
+\textbf{Hilbert space formalism} \ $\leftarrow$ \textbf{GNS construction} $\rightarrow$ \ \textbf{Algebraic formalism}
+\end{center}
+
+$\to$ \textbf{A state} $\omega$ on $\Acal$ vector is represented as a \textbf{``vacuum'' vector}, and elements \hspace*{9pt} of $\Acal$ as \textbf{linear operators}. \\
+
+\vfill  
+
+$\to$ \textbf{Conversely}, any normalised \textbf{Hilbert space vector} is a \textbf{state on the algebra \hspace*{9pt} of linear operators} with the $\ast$ operation given by the Hermitian adjoint.
+ 
+\vfill
+ 
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Functional approach -- Support}
+
+\begin{block}{Spacetime support of of $\Fsf$}
+%
+\vspace*{-8pt}
+%
+\begin{equation*}
+\supp(\Fsf) \doteq \left\{ x \in \Mcal \bigg| 
+\begin{array}{l} 
+\forall \ \mbox{neighborhood } U \mbox{ of } x, \ \exists \ \phi, \psi \in \mbox{ smooth}, \\
+\supp(\psi) \subset U, \mbox{ such that } \Fsf(\phi + \psi) \neq \Fsf(\phi).
+\end{array}
+\right\}
+\end{equation*}
+%
+\end{block}
+
+\vfill
+
+\begin{block}{Lemma}
+Usual properties for the spacetime support
+\begin{tabular}{ll}
+\qquad $\mbox{Sum :}$ &  $\supp(\Fsf + \Gsf) \subseteq \supp(\Fsf) \cup \supp(\Gsf)$ \\
+\qquad $\mbox{Product :}$ & $\supp(\Fsf \cdot \Gsf) \subseteq \supp(\Fsf) \cap \supp(\Gsf)$
+\end{tabular}
+\end{block}
+
+\vfill
+
+We require that \textbf{all functionals} have \textbf{compact support}.
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Wave front set -- Definition}
+
+\vfill
+
+$\bullet$ \ \textbf{Distribution.} \ $\big( X$ : open set in $\Rbb^n \big)$ \\
+$u$ : linear form on $\Ccal^\infty_0(X)$ such that $\forall$ comp. set $K \subset X$,
+\vspace*{-6pt}
+\begin{equation*}
+\abs{u(\phi)} \ \leq \ C \ \sum_{\abs{\alpha} \leq k} \sup\abs{\partial^\alpha \phi}   \ , \quad \phi \in \Ccal^\infty_0(K) .
+\end{equation*}
+
+\vfill
+
+$\bullet$ \ \textbf{Idea.} 
+\vspace*{-6pt}
+\begin{equation*}
+v \in \Ccal^\infty_0(\Rbb^n) \ \Leftrightarrow \ \abs{\hat{v}(k)} \ \leq \ C \ \left( 1 + \abs{k} \right)^{-N} 
+\end{equation*}
+
+\vfill
+
+\begin{block}{Definition -- Wave front set. \ \citebeam{Hörmander 1983}}
+ The wave front set $\WF(u) \in \Rbb^n \times \Rbb^n$ of $u \in \Ccal^\infty_0(\Rbb^n, \Rbb)^\prime$ as follows \\[2pt]
+\qquad \textbf{(i)} \ for every $x \in \Rbb^n$ where $u$ is singular, choose a non vanishing test function $f \in \Ccal^\infty_0(\Rbb^n, \Rbb)$ \\[2pt]
+\qquad \textbf{(ii)} \ $(x,k) \in \WF(u)$ iff $\hat{fu}(k)$ is \textbf{not} rapidely decreasing in the diection of $k \neq 0$ for some $f$.
+\end{block}
+
+\vfill
+
+\end{frame}
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Wave front set -- Examples}
+
+\vfill
+
+$\bullet$ \ \textbf{Wave front set} : local and covariant under coordinate transformations. \\
+\quad $\to$ \ It generalises to CST (in contrast to the Fourier transform). \\[5pt]
+
+\vfill
+
+$\bullet$ \ \textbf{Examples} : \\ 
+
+$\leadsto$ \ $\WF(\delta) = \left\{ (0,k) | k \in \Rbb^n , k \neq 0 \right\} $ \\
+\textit{Proof}: The singular support of $\delta(x)$ is $\{0\}$ and $\hat{f\delta}(k) = f(0)$ is not fast decreasing if $f(0) = 0$. \\[12pt]
+
+$\leadsto$ 
+\vspace*{-17pt}
+\begin{equation*}
+\hspace*{-110pt} u(x) = \frac{1}{x^2 + i \epsilon}, \quad \WF(u) = \{ (0;k) | k<0 \}
+\end{equation*}
+\textit{Proof}: By contour integration $\hat{u}(k) = -2i\pi \Theta(-k)$, thus
+\begin{equation*}
+\abs{\hat{fu}(k)} = \abs{ \frac{1}{2\pi} \int_\Rbb dq \ \hat{f}(q) \ \hat{u}(k-q) } = \abs{ \int_k^\infty dq \ \hat{f}(q) }
+\end{equation*}
+\qquad Fourier transform of a test function, $\hat{f}(q)$, is fast decreasing for $q \geq 0$ !!
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Functional approach -- Regularity I}
+
+\vfill
+
+$\bullet$ \ We would like to choose $\Fcal$, space of observables, which gives us \textbf{``smooth functionals''}. \\
+\qquad $\leadsto$ \ Need a careful definition of differentiability!
+
+\vfill
+
+\begin{block}{Definition}
+\textbf{The derivative} of $\Fsf$ at $\phi$ w.r.t the direction $\psi$ is defined as 
+\begin{equation*}%
+\Fsf^{(1)}(\phi)[\psi] \doteq \lim_{t \to 0} \ \frac{1}{t} \bigg( \Fsf(\phi + t \psi) - \Fsf(\phi) \bigg) \ .
+\end{equation*}
+whenever the limit exists. The functional $\Fsf$ is said to be  \\
+\quad $\to$ \textbf{differentiable} at $\phi$ if $\Fsf^{(1)}(\phi)[\psi]$ exists for any $\phi$ \\
+\quad $\to$ \textbf{continuously differentiable} if it is differentiable for all directions and at all evaluations points, and $\Fsf^{(1)}$ is a \textbf{jointly continuous map} from $\Crak \times \Crak$ to $\Cbb$, i.e. $\Fsf \in \Ccal^{(1)}(\Crak,\Cbb)$
+\end{block}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Functional approach -- Regularity II}
+
+\vfill
+
+$\bullet$ \ derivatives of functionals $\leadsto$ distribution \\
+\hspace*{8pt} \textbf{Example}: 
+\begin{equation*}
+\Fsf(\phi) = \int_\Mcal \dsf\mu_x \ f(x) \ \frac{\lambda}{4!} \phi(x)^4 \ , \quad \Fsf^{(1)}(\phi) =  \frac{\lambda}{3!} \ f(x) \ \phi(x)^3 \ \delta(x,y) \ , \quad \dots
+\end{equation*}
+
+\vfill
+
+$\bullet$ \ \textbf{Important remark}: many of the useful results of calculus are still valid (Leibniz rule, First fundamental theorem calculus, \dots). \\[5pt]
+
+\vfill
+
+We will work with the following smooth observables. \\[5pt]
+
+\begin{block}{Definition --  Smooth functionals.}
+Our observables are all possible functionals $\Fsf$ such that \\
+\qquad $\bullet$ \ they are smooth, i.e. $\Fsf \in \Ccal^\infty(\Crak,\Cbb)$ \\
+\qquad $\bullet$ \ $k$-th order derivatives $\Fsf^{(k)}(\phi)$ are \textbf{distributions of compact support}.
+\end{block}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Spaces of observables}
+
+\begin{itemize}
+  
+\item \textbf{Regular} functionals $\Fcal_{\mathsf{reg}}$ \\[-12pt]   
+\begin{equation*}
+\Fcal_{\mathsf{reg}} = \left\{ \Fsf \ | \ \Fsf \mbox{ smooth}, \Fsf^{(n)} \mbox{ comp. sup.}, \mbox{ and } \WF(\Fsf^{(n)}) = \emptyset \right\} 
+\end{equation*}
+    
+\item \textbf{Microcausal} functionals $\Fcal_{\mu\csf}$ \\[-24pt]    
+\begin{equation*}
+\Fcal_{\mu\csf} = \left\{ \Fsf \ | \ \Fsf \mbox{ smooth}, \Fsf^{(n)} \mbox{comp. sup.}, \WF(\Fsf^{(n)}) \cap \left( \Mcal^n \times ( \overline{V^{n}_{+}} \cup \overline{V^{n}_{-}} ) \right)  = \emptyset \right\} 
+\vspace*{-8pt}
+\end{equation*}
+\hspace*{15pt} $\to$ local interactions are a subset $\Fcal_{\mathsf{loc}} \subset \Fcal_{\mu\csf}$ 
+  
+\vspace*{14pt}
+  
+\hspace*{2pt}% 
+\textbf{Interactions} $\to$ \textbf{Local} functionals $\Fcal_{\mathsf{loc}}$ \\[-12pt]
+\begin{equation*}
+\Fcal_{\mathsf{loc}} = \left\{ \Fsf \in \Fcal_{\mu\csf} \ | \ \supp(\Fsf^{(n)}) \subset \{ (x,\dots,x) \subset \Mcal^n \} \right\}
+\end{equation*}
+
+\hspace*{2pt}%
+Example: $\Fsf \in \Fcal_\mathsf{loc}(\Mcal)$
+\vspace*{-2pt}
+\begin{equation*}
+\Fsf(\phi) = \int_\Mcal \dsf\mu \ f(x) \ \frac{\lambda}{4!} \phi(x)^4 \ , \ \mbox{with} \ f \in \Ccal^\infty_0(\Mcal,\Rbb)
+\end{equation*}
+
+\end{itemize}
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Hadamard states -- Prefered states}
+
+\vfill
+
+$\bullet$ \ \textbf{Minkowski} : isometry group (Poincaré group) $\&$  spectrum condition \\ 
+\qquad $\Rightarrow$ \textbf{unique vacuum state} \\
+
+\vfill
+
+\begin{block}{On generic CST}
+\vspace*{-6pt}
+isometry group $\&$ microlocal spectrum condition $(\mu SC)$ \\
+\qquad $\Rightarrow$ \textbf{Hadamard states} \\
+\end{block}
+
+\vfill
+
+$\bullet$ \ \textbf{Properties of Hadamard states} : \\
+%
+\qquad \textbf{(i)} \ same UV behaviour as the Minkowski vacuum \\
+%
+\qquad \textbf{(ii)} \ guarantee that quantum fluctuation of expectations values are finite \\
+%
+\qquad \textbf{(iii)} \ \dots \\
+%
+\qquad \textbf{(iv)} \ well suited for normal ordering !!
+%
+
+\vfill
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Hadamard condition -- Abstract Definition}
+
+\vfill
+
+$\bullet$ \ \textbf{Hadamard states} \\ 
+\qquad $\to$ specify by \textbf{constrainig the singulary} of the two point function
+
+\vfill
+
+\begin{block}{Hadamard condition \citebeam{Radzikowski 1996}}
+A state $\omega$ fulfils the \textbf{Hadamard condition} ($\mu S C$) iff
+%\vspace*{-10pt}
+\begin{equation*}
+ \WF(\omega_{2}) \ = \ \bigg\{ (x,k_x ; y,-k_y) \in T^\ast\Mcal^2 \backslash \{0\} \ \bigg| \ (x,k_x) \sim (y,k_y) , \ k_x \triangleright 0 \bigg\}
+\end{equation*}
+$\sim$ : $\exists$ a null geodesic connecting $x$ and $x^\prime$, and $k^\prime$ is the parallel transport of $k$. \\
+$k_x \triangleright 0$ : $k_x$ is futur directed.
+\end{block}
+
+\vfill
+
+$\bullet$ \textbf{abstract definition} of Hadamard states \\
+\qquad $\to$ powerful BUT unconvenient for computations !
+
+\vfill
+
+\end{frame} 
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Hadamard form -- Explicit Definition}
+
+\vfill
+
+$\bullet$ \ $\sigma(x,y)$ : the half squared geodesic distance. \\[2pt]
+
+$\bullet$ \ $\Ncal$ : geodesically convex domain on $\Mcal$.
+
+\vfill
+
+\begin{block}{Hadamard form}
+$\Hsf_\sharp$ is said to be of Hadamard form on $\Ncal \times \Ncal$ iff $\exists$ $u$, $v$, and $w$ such that
+\begin{eqnarray*}
+&& \Hsf_\sharp(x,y) \doteq \lim_{\epsilon \downarrow 0} \ \frac{1}{8\pi^2}\left(\frac{u(x,y)}{\sigma_\sharp(x,y)}+v(x,y) \ \log(M^2 \sigma_\sharp(x,y))+w(x,y)\right)  \\[4pt]
+&& \sigma_\pm(x,y) = \sigma(x,y) \pm i\epsilon(t_x-t_y) + \epsilon^2 \qquad \sigma_\fsf(x,y) = \sigma(x,y) + i\epsilon 
+\end{eqnarray*}
+with $u,v,w:  \mbox{smooth}$ (Hadamard coefficients).
+\end{block}
+
+For the rest of the talk: \\[2pt]
+\qquad $\to$ \ $\Hsf_+$ (defined with $\sigma_+$) is the \textbf{positive frequency of the propagator}. \\
+\qquad $\to$ \ $\Hsf_\fsf$ (defined with $\sigma_\fsf$) is the \textbf{Feynman propagator}.
+
+\end{frame} 
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{<< Formal Deformation >> I}
+
+\textbf{``Deformation''} of the \textbf{pointwise product} on $\Fcal_{\mu\csf}$
+
+\vfill
+
+$\to$ $\star_\Hsf$ product, defined with $\Hsf_+$ (implement ``quantum structure'') \\[2pt]
+
+the new product will encode the canonical commutation relation
+
+\vfill
+
+\begin{block}{\vspace*{-3ex}}
+\begin{equation*}
+ (F \star G)(\phi) = F(\phi) G(\phi) + \sum_{n=1}^\infty \frac{\hbar^n}{n!} \Smearip{F^{(n)}(\phi), \Delta^{\otimes n} G^{(n)}(\phi)} \ .
+\end{equation*}
+\end{block}
+
+\vfill
+
+$\to$ powers of $\Delta$ well defined ? 
+
+\vfill
+
+\begin{equation*}
+\mathsf{WF}(\Delta) = \left\{ (x,y;k_x,k_y) \in T^\ast \mathcal{M} \backslash \{0\} \ | \ (x,k_x) \sim (x,k_y) \right\} 
+\end{equation*}
+
+\vfill
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Wave front set -- Properties}
+
+\vfill
+
+\begin{block}{Microlocal analysis. \citebeam{Hörmander 1983}}
+The \textbf{pointwise product} of two distribution $u$, $v$ is well defined if 
+\vspace*{-10pt}
+\begin{equation*}
+\WF(u) \oplus \WF(v) \neq 0 \ \Rightarrow \ \exists! \ u.v \in \mathcal{D}^{\prime}(\mathbb{R}^n). 
+\vspace*{-10pt}
+\end{equation*}
+For $\Psf$ a differential operator
+\vspace*{-12pt}
+\begin{equation*}
+\WF(\Psf u) \ \subset  \ \WF(u) \ .
+\vspace*{-8pt}
+\end{equation*}
+\end{block}
+
+\vfill
+
+\textbf{Examples} \\[4pt]
+
+$(0,k)$ and $(0,-k)$ $\in$ $\WF(\delta)$ \ $\Rightarrow$ \ powers of $\delta$ cannot be defined \\[3pt]
+$\Psf \Delta_\asf = \delta$ $\Rightarrow$ $\WF(\Psf \Delta_\asf) = \WF(\delta) \subset \WF(\Delta_\asf)$ $\Rightarrow$ powers of $\Delta_\asf$ cannot be defined \\[8pt]
+
+$(0;k_x,k_y) \ \& \ (0,-k_x,-k_y)$ $\in$ $\WF(\Delta)$ $\Rightarrow$ \textbf{powers of} $\Delta$ \textbf{cannot be defined} \ \textdbend
+
+\vfill
+
+\end{frame} 
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{<< Formal Deformation >> II}
+
+\vfill
+
+$\bullet$ \ The solution is to \textbf{spilt} $\Delta$ in a \textbf{positive} and \textbf{negative} frequency part.
+\vspace*{-10pt}
+\begin{equation*}
+i\Delta = \Delta_+ + \Delta_- 
+\vspace*{-10pt}
+\end{equation*}
+\hspace*{8pt} where $\Delta_+$ and $\Delta_-$ are of \textbf{Hadamard form}.
+
+\vfill 
+
+\begin{block}{``The quantum product''}
+\vspace*{-16pt}
+\begin{equation*}
+ (F \star G)(\phi) = F(\phi) G(\phi) + \sum_{n=1}^\infty \frac{\hbar^n}{n!} \Smearip{F^{(n)}(\phi), \Delta_+^{\otimes n} G^{(n)}(\phi)} 
+\end{equation*}
+\vspace*{-8pt}
+\end{block}
+
+$\to$ due to $\WF(\Delta_+)$, powers of $\Delta_+$ are well defined !
+
+\vfill
+
+$\bullet$ \ \textbf{Nomal ordering}. \ 
+$\left( \Fsf \in \Acal_\hbar, \ \alpha_{\Delta_+}(\Fsf) = \E^{-\hbar \Gamma_{\Delta_+}} \Fsf, \mbox{ with } \Gamma_{\Delta_+} = \Smearip{\Delta_+,\frac{\delta^2}{\delta\phi^2}} \right)$ 
+\begin{eqnarray*}
+&& \hspace*{-6pt} \Wick{\phi^2(x)} \ = \alpha_{\Delta_+}(\phi^2(x)) = \underset{x\to y}{\lim} \left( \phi(x)\phi(y) - \Delta_+(x,y) \right) \\[2pt]
+&& \hspace*{-6pt} \Wick{\phi(x)^2} \ \Wick{\phi(y)^2} \ = \ \phi(x)^2 \star \phi(y)^2 \\
+&& \hspace*{58pt} = \ \Wick{\phi(x)^2 \phi(y)^2} + \ 4 \hbar \Wick{\phi(x) \phi(y)}  \Delta_+(x,y) + 2 \hbar^2 \Delta^2_+(x,y)
+\end{eqnarray*}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Time ordered product}
+
+\vfill
+
+$\bullet$ \ to \textbf{implement interactions}, we need \textbf{another product} \\
+\hspace*{8pt} $\to$ time ordering product, defined with $\Delta_\fsf$ 
+\vspace*{-8pt}
+\begin{equation*}
+\Fsf \TdotH \Gsf = \Fsf \star_\Hsf \Gsf, \mbox{ if } \supp(\Fsf) \geq \supp(G)
+\end{equation*}
+
+\begin{block}{``The interaction product''}
+\vspace*{-13pt}
+\begin{equation*}
+(\Fsf \ \Tdot \ \Gsf)(\phi) \ \doteq \ \Fsf(\phi) \cdot \Gsf(\phi) + \sum_{n=1}^{\infty} \frac{\hbar^n}{n!} \Smearip{\Fsf^{(n)},\Delta_{\fsf}^{\otimes n} \Gsf^{(n)}} \quad \textdbend  
+\vspace*{-6pt}
+\end{equation*}
+\end{block}
+
+\hspace*{8pt} $\to$ powers of $\Delta_\fsf$ ill defined \\
+\hspace*{20pt} because $P \Delta_\fsf = \delta$ $\Rightarrow$ $\WF(\Delta_\fsf) \supset \WF(\delta)$ \\
+
+\vfill
+
+$\bullet$ \ ``\textbf{Standard formulation}'' \\[-20pt]
+%
+\begin{eqnarray*}
+\Tsf \left( \Wick{\phi(x)^2} \ \Wick{\phi(y)^2} \right) \hspace*{-6pt} &=& \hspace*{-6pt} \phi(x)^2 \Tdot \phi(y)^2 \\ 
+&=& \hspace*{-6pt} \Wick{\phi(x)^2 \phi(y)^2} + \ 4 \hbar \Wick{\phi(x) \phi(y)} \Delta_\fsf(x,y) + 2 \hbar^2 \Delta^2_\fsf(x,y)
+\end{eqnarray*}
+
+\vfill
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Algebraic structure}
+
+\begin{itemize}
+ 
+\item \textbf{Algebraic structure}, with 2 products
+\vspace*{-2pt}
+\begin{equation*}
+\Acal_\Hsf \ \doteq \ \Acal^0_\hbar = \left( \Fcal_{\mu\csf} \ , \ \star , \Tdot \right)
+\end{equation*}
+
+\item maps of the products \\
+for $F, G \in \Fcal_{\mu\csf}$, defining $d = \Hsf_+^\prime - \Hsf_+ = \Hsf_\fsf^\prime - \Hsf_\fsf \simeq \frac{1}{8\pi}\left( w^\prime - w \right)$
+\vspace*{-4pt}
+\begin{eqnarray*}
+\Fsf \star_{\Hsf^\prime} \Gsf &=& \alpha_d \left( \alpha_{-d}(\Fsf) \star_\Hsf \alpha_{-d}(\Gsf) \right) \\ 
+\Fsf ._{\Tsf_{\Hsf^\prime}} \Gsf &=& \alpha_d \left( \alpha_{-d}(\Fsf) ._{\Tsf_\Hsf} \alpha_{-d}(\Gsf) \right) 
+\end{eqnarray*}
+
+\vspace*{-9pt}
+
+\begin{block}{}
+\vspace*{-14pt}
+\begin{center}
+$\Acal_{\Hsf^\prime} \ \sim \ \Acal_{\Hsf}$, the two algebras are isomorphic \\
+$\Rightarrow$ thus we will choose a particular representation $\Acal_{\Hsf}$
+\end{center}
+\vspace*{-5pt}
+\end{block}
+
+\end{itemize}
+  
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Interacting picture}
+
+\vfill
+
+$\bullet \quad$ \textbf{Local $\Ssf$ matrix}:
+\vspace*{-17pt}
+\begin{equation*}
+ \hspace*{-25pt} \Ssf(F) = \sum_{n=0}^{\infty} \frac{i^n}{\hbar^n n!} \ \underbrace{\Fsf ._\Tsf \ \dots \ ._\Tsf \Fsf}_{n}
+\end{equation*}
+
+\vfill
+
+$\bullet \quad$ \textbf{Bogoliubov formula} \citebeam{Brunetti, Fredenhagen 2009} \\[-10pt]
+\begin{equation*}
+ \Bsf_\vsf(\Fsf) = \Ssf(\Vsf)^{\star -1} \star \left( \Ssf(\Vsf) ._{\Tsf} \Fsf \right) 
+\end{equation*}
+$\to$  transition from the free action to the one with additional interaction term $\Vsf$.
+
+\vfill
+
+$\bullet \quad$ \textbf{Algebraic structure} \ $\Acal^I_\hbar = \left( \Fcal_{I} , \star , \Tdot \right)$
+\begin{equation*}
+\Fcal_{I} \ \overset{\ \ \Bsf_\vsf \ \ }{\longrightarrow} \ \Fcal_{\mu \csf}
+\end{equation*}
+
+\vfill
+
+$\bullet$ \ ``\textbf{Gell Mann and Low theorem}''. \ $\left( \phi_I(x) = \Bsf_\vsf(\phi(x)) \right)$ \\
+
+\hspace*{9pt} In the Minkowski vacuum state $\Omega_0$, the expectation value of $\phi_I(x)$
+\vspace*{-6pt}
+\begin{equation*}
+\Smearip{ \phi_I(x) }_{\Omega_0} 
+= 
+\Smearip{ S(V)^{-1} T( \Ssf(V) \ \phi(x)) }_{\Omega_0} 
+= 
+\frac{% 
+\Smearip{ \Tsf\left(e^{\frac{i}{\hbar} V} \phi(x) \right) }_{\Omega_0}
+}{%
+\left\langle S(V) \right\rangle_{\Omega_0}
+}
+\end{equation*}
+
+\end{frame}  
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+ 
+\frametitle{A bit of drawing \dots }
+
+\vfill
+
+\textbf{Compuations of} $\Smearip{\phi_\vsf(x) \star_\Delta \phi_\vsf(y)}_\Omega$ \\
+
+\vfill
+
+the two point function of the Interacting field in $\phi^4$ up to second order in $\lambda$ \\[3pt]
+$\Omega$ : Gaussian Hadamard state of the free field \\[3pt]
+$(\mu(x) = 3 \lambda \ d(x, x))$
+
+\vfill
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[scale=0.7]{./fig_propagators.pdf}
+ % fig_propagators.pdf: 309x75 pixel, 72dpi, 10.90x2.65 cm, bb=0 0 309 75
+\end{figure}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+ 
+\frametitle{ \dots \ and finally a ``Feynman picture'' ! }
+
+\vfill
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[scale=0.7]{./fig_2pf.pdf}
+\end{figure}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+\section{Dim. reg. on CST}
+%----------------------------------------------------------------------------%
+
+{
+\setbeamertemplate{footline}{} 
+\setbeamertemplate{headline}{}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight]{fig_dimregcst}}
+\pgfsetfillopacity{0.8}
+\begin{frame}
+\bf
+\begin{exampleblock}{\vspace*{-3ex}}
+\begin{center}
+\Large Framework for a Dimensional Regularisation \\[10pt] on Curved Spacetime
+\end{center}
+\end{exampleblock}
+\end{frame}
+}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{The regularisation problem}
+
+\vfill
+
+$\bullet$ \ \textbf{Causality} : \quad $\Fsf ._\Tsf \Gsf = \Fsf \star \Gsf, \mbox{ if } \supp(\Fsf) \geq \supp(G)$ \\
+\hspace*{8pt} The time ordered product of local functionals is well defined if their support \hspace*{8pt} are pairwise disjoint \\
+
+\hspace*{8pt} $\to \ \Hsf_\fsf(x,y)^n$  ill defined if $x=y$ \\
+
+\vfill 
+
+$\bullet$ \ \textbf{Regularisation problem} : extend time ordered products to local functionals \\
+\hspace*{8pt} $\to$ extend on the full space $\Hsf_\fsf(x,y)^n$
+
+\vspace*{-6pt}
+
+\begin{block}{}
+\vspace*{-2ex}
+\textbf{Epstein Glaser induction} \citebeam{Brunetti, Fredenhagen 2000}  \\
+\textbf{if} $\Fsf_1, \dots, \Fsf_n \in \Fcal_\mathsf{loc}(\Mcal^n)$, \\
+\textbf{then} $\Fsf_1 ._\Tsf \ \dots \ \Fsf_n$ can be defined up to $\mathsf{Diag}(\Mcal^n)=\{{\bf x}\in \Mcal^n  | x_1 = \dots = x_n\}$ \\[5pt]
+\vspace*{-1ex}
+\end{block}
+
+\vfill
+
+$\bullet$ \ \textit{Main theorem of Renormalization} \citebeam{Brunetti, Dütsch, Fredenhagen, 2009}\\
+\hspace*{8pt} $\Ssf_1$, $\Ssf_2$ renormalized $\Ssf$ matrices $\Rightarrow$ $\exists!$ a map $\Zsf : \Fcal_\mathsf{loc} \to \Fcal_\mathsf{loc}$, such that 
+\vspace*{-9pt}
+\begin{equation*}
+\Ssf_1 = \Ssf \circ \Zsf \ .
+\end{equation*}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Scaling degree}
+
+\vfill
+
+\textbf{Scaling degree}: For $t \in \Dcal^\prime(\Rbb^4)$ \citebeam{Steinmann 1971} 
+\\[-15pt]
+\begin{equation*}
+\sd(t) = \inf \{\omega\in\Rbb \ | \ \lim_{\rho \to 0}\rho^\omega t(\rho x)=0 \} 
+\end{equation*}
+
+\vspace*{-8pt}
+
+\begin{block}{}
+\vspace*{-10pt}
+\textbf{``A divergence criterion''}, $t \in \Dcal^\prime(\Rbb^4\backslash\{0\})$ \quad \citebeam{Brunetti, Fredenhagen 2000} \\
+$\bullet$ \ \textbf{if} $\sd(t) < 4$, \\
+\hspace*{8pt} \textbf{then} $t$ has a unique extension $\dot{t} \in \Dcal^\prime(\Rbb^4)$ with the same scaling degree \\
+$\bullet$ \ \textbf{for} $4 \leq \sd(t) < \infty$, $\dot{t}$ has non unique extensions (with same $\sd$)
+\end{block}
+
+\vspace*{-4pt}
+
+\textbf{Examples} \\[2pt]
+
+$\bullet$ \ $t(x) = \logar\abs{x} \in \Dcal^\prime(\Rbb\backslash\{0\})$ $\to$ $\sd(t) = 0$ : $\exists!$ ext. $\Rightarrow$ $\dot{t}(x) = \underset{\epsilon \downarrow 0}{\lim} \ \logar\abs{x+i\epsilon}$ \\
+
+$\bullet$ \ $t(x) = \abs{x}^{-1} \in \Dcal^\prime(\Rbb\backslash\{0\})$ $\to$ $\sd(t) = 1$ : $\exists$ ext. (non unique) \\
+\vspace*{-14pt}
+\begin{equation*}
+\Rightarrow \quad \dot{t}_1(x) = \Pcal\frac1x \ , \quad \dot{t}_2(x) = \underset{\epsilon \downarrow 0}{\lim} \ \frac{1}{x + i \epsilon}
+\vspace*{-2pt}
+\end{equation*}
+
+$\bullet$ \ Feynman propagator (Minkowski)
+\vspace*{-10pt}
+\begin{equation*}
+\Delta_\fsf(x) = \frac{1}{(2\pi)^d} \int \dsf^dp \ \frac{\E^{ipx}}{p^2-m^2+i\epsilon} \ \to \ \sd(\Delta_\fsf)=d-2 \ \Rightarrow \mbox{ in dim. } 4 \ \exists! \mbox{ ext.} 
+\end{equation*}
+ 
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Main ideas behind the ``dimensional'' regularisation}
+
+\vfill
+
+\textbf{The reason of our problem}: \\
+pointwise powers of $\Delta_\fsf$: ill defined, because contain $\sigma_\fsf^{-n}$ with $n$ too large. \\
+Fix $x$ and set the distribution $t(y) = \sigma_\fsf^{-n}(x,y)$, \\
+then for $x \to y$, $\sd(t(y)) = 2n$. \\
+$\Rightarrow$ $t(y)$ has an unique extension only for $n < 2$
+
+\vfill
+
+\textbf{``Main steps of the recipe''}
+
+(i) Deform $n$ to $n + \alpha$, with $\alpha \in \Cbb$ \\
+
+\qquad \textbf{Result}: the map $\alpha \mapsto \sigma_\fsf^{-(n+\alpha)}$ is meromorphic in $\alpha$. \\ 
+ 
+(ii) compute the \textbf{Laurent series} with respect to $\alpha$ \\
+\qquad $\to$ play with the identities fulfilled by $\sigma$ \\
+ 
+(iii) subtract the principal part \\
+ 
+(iv) take the limit $\alpha \to 0$ \\
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Sketch of the proof of the meromorphicity in $\alpha$}
+
+\vfill
+
+\textbf{Meromorphicity} in $\alpha$ of $\alpha \mapsto \Smearip{ \sigma^{-(n+\alpha)} , \phi }$ \textbf{?} \\
+with $\phi$ smooth and comp. supp. \\
+
+\vfill
+
+\textbf{(i)} \ $\sigma \to \sigma_\fsf = \sigma + i \epsilon$ \ : \   $\sigma_\fsf^{-(n+\alpha)} = \expo\bigg(-(n+\alpha) \ \logar(\sigma + i \epsilon)\bigg)$ \\
+
+\vfill
+ 
+\textbf{(ii)} \ $\alpha = a + i b$, \quad $a, b \in \Rbb$ \\
+
+\textbf{(iii)} \ $\sigma_\fsf^{-(n+\alpha)} = \sigma_\fsf^{-(n+a)} \ \sigma_\fsf^{-ib}$, 
+\begin{eqnarray*}
+\frac{\partial}{\partial a} \Smearip{\sigma_\fsf^{-(n+\alpha)},\phi} 
+&\overset{?}{=}&
+\Smearip{\frac{\partial}{\partial a} \sigma_\fsf^{-(n+\alpha)} , \phi} \\
+\frac{\partial}{\partial b} \Smearip{\sigma_\fsf^{-(n+\alpha)},\phi} 
+&\overset{?}{=}&
+\Smearip{\frac{\partial}{\partial b} \sigma_\fsf^{-(n+\alpha)} , \phi}
+\end{eqnarray*}
+
+$\to$ \textbf{equalities hold!} \\[2pt]
+ 
+\vfill
+
+\textbf{(iv)} \ \textbf{Cauchy Riemann equations hold!} \\
+ 
+\vfill
+
+\begin{equation*}
+\Rightarrow \ \alpha \mapsto \Smearip{\sigma_\fsf^{-(n+\alpha)},\phi} \ \mbox{ \textbf{meromorphic} in } \ \alpha \hfill 
+\end{equation*}
+
+\vfill
+
+\end{frame}
+
+%-----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{The fish diagram ($2$ vertices)}
+
+\begin{minipage}{0.2\linewidth}
+\centering
+\begin{figure}
+\begin{tikzpicture}[thick,scale=0.5] 
+\filldraw (-1,0) circle (1pt) node[left] {$x$};
+\filldraw (1,0) circle (1pt) node[right] {$y$};
+\draw (0,0) circle (1cm and 0.6cm);
+\end{tikzpicture}
+\end{figure}
+\end{minipage}
+\hspace*{-8pt}
+$\longrightarrow$
+\hspace{5pt}
+\begin{minipage}{0.7\linewidth}
+\vspace*{-13pt}
+\begin{equation*}
+\Delta_\fsf^2(x,y) = \frac{1}{8 \pi^2} \bigg( \frac{u^2(x,y)}{\sigma_\fsf^2(x,y)} +  
+\mbox{``well defined for $x=y$''}
+\bigg)
+\end{equation*}
+\end{minipage}
+
+\vspace*{20pt}
+
+$\bullet$ regularize only $\sigma_\fsf^{-(2+\alpha)}$ \\
+
+$\bullet$ use $\sigma$ identities : \ $ \Box \sigma = 4 + f \sigma $ \\
+ 
+$\bullet$ $\alpha \mapsto \sigma_\fsf^{-(2+\alpha)}$ (weakly) meromorphic in $\alpha$. \\
+\quad $\to$ Laurent series w.r.t $\alpha$ \\
+\quad $\to$ subtract the principal part and take the limit $\alpha \to 0$
+ 
+\begin{equation*}
+\left(\frac{1}{\sigma_\fsf^2}\right)_\mathsf{reg} \ = \ \lim_{\alpha \to 0} \ \left( 1 - \pp \right) \frac{1}{\sigma_\fsf^{2+\alpha}} 
+\end{equation*}
+\begin{equation*}
+\Longrightarrow \ \left(\Delta_\fsf^{2}\right)_\mathsf{reg} 
+\end{equation*}
+ 
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{The fish diagram -- details}
+ 
+Fix $y$, and consider for $x \in \Ncal$
+\begin{equation*}
+\tsf^\alpha(x) = \frac{1}{M^{2\alpha}} \frac{1}{\sigma_\fsf(x,y)^{2+\alpha}} \ , \quad \mbox{($M$ : to correct the change of dimension)}
+\end{equation*}
+
+Using $\Box \sigma = 4 + f \sigma$ we have
+%
+\begin{equation*}
+\frac{1}{\sigma_\fsf^{2+\alpha}}=\frac{1}{2\alpha(1+\alpha)}\left(\Box_x+(1+\alpha)f\right)\frac{1}{\sigma_\fsf^{1+\alpha}} 
+\vspace*{-6pt}
+\end{equation*}
+%
+then
+%
+\begin{equation*}
+ \tsf(x) = \frac{1}{2} (\Box + f) \left( \frac{1}{\alpha \sigma_\fsf} - \frac{\logar(M^2\sigma_\fsf)}{\sigma_\fsf} \right) - \Box\frac{1}{2\sigma_\fsf}  + \Ocal(\alpha)
+\end{equation*}
+%
+therefore
+%
+\vspace*{-6pt}
+%
+\begin{equation*}
+\dot{\tsf}(x) \ = \ \lim_{\alpha\to 0}\left(1-\pp\right) \ \tsf^\alpha(x) \ = \ - \frac{1}{2}(\Box_x+f)\frac{\log M^2 \sigma_F}{\sigma_\fsf}-\Box_x \frac{1}{2\sigma_\fsf} 
+\end{equation*}
+%
+Remark :
+%
+\vspace*{-8pt}
+%
+\begin{equation*}
+\left( \Box + f \right) \frac{1}{\sigma_\fsf} \ = \ 8 \pi^2 i \ \delta
+\end{equation*}
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+ 
+\frametitle{General case (N vertices) I}
+
+\vfill
+
+\begin{wrapfigure}{l}{0.3\textwidth}
+\begin{tikzpicture}[thick,scale=1.2] 
+\draw (0,0) -- (2,0);
+\draw (2,0) -- (1,1.4);
+\draw [bend left] (0,0) edge (1,1.4);
+\draw [bend left] (1,1.4) edge (0,0);
+\filldraw (0,0) circle (1pt) node[below] {$x_1$};
+\filldraw (2,0) circle (1pt) node[right] {$x_2$};
+\filldraw (1,1.4) circle (1pt) node[right] {$x_3$};
+\end{tikzpicture}
+\end{wrapfigure}
+
+$\Gcal$: graph with $N$ vertices $x_1, \dots, x_N$ \\
+$x_k$: a reference point arbitrarily chosen
+\begin{equation*}
+\sigma_{ij} = \sigma_\fsf(x_i,x_j), \quad \sigma_{i} = \sigma_\fsf(x_k,x_j), \quad \sigma^a_{ij} = \nabla^a_i \sigma_{ij}
+\end{equation*}
+
+\vfill
+
+\begin{equation*}
+\Rightarrow \ t^\alpha(x_1, \dots, x_N) \ = \ \prod_{i<j} \frac{1}{\sigma_{ij}^{n_{ij}+\alpha_{ij}}} , \ \ \alpha_{ij} \in \Cbb
+\end{equation*}
+
+$\bullet$ Need a way to isolate the poles in $\{\alpha\}$
+\vspace*{-5pt}
+\begin{equation*}
+\Rsf \doteq \nabla_a^i \sigma_i^a \ \to \ \mbox{``analogue'' of $\Box \sigma + \dots$ that we use in the case $N=2$}
+\end{equation*}
+\vspace*{-10pt}
+\begin{equation*}
+\tsf^\alpha \ = \ \frac{1}{\Pcal(N,n_{ij},\alpha_{ij})} \ \left( \Rsf^N \ \tsf^\alpha + \mbox{ ``corr.'' }  \right) 
+\end{equation*}
+
+\vfill
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+ 
+\frametitle{General case (N vertices) II}
+
+\begin{itemize}
+ 
+\item then \textbf{apply} $\Rsf$ as many times as \textbf{needed}, to have \textbf{sufficiently small} $\sd$ 
+
+\item the terms in $\logar(\sigma)$ obtained by \textbf{deriving} w.r.t $\alpha_{ij}$
+
+\item subtract the pole \textbf{order by order} as explained or use the \textbf{forest formula} \\
+\citebeam{Keller 2010, Dütsch, Fredenhagen, Keller, Rejzner 2013}
+
+\item \textbf{if} $(\Mcal,g)$ has isometries and $\Delta_\fsf$ (i.e. the state $\Omega_0$) is invariant w.r.t. these, \textbf{then} the regularisation scheme preserves this invariance
+ 
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+\section{Appli. to FLWR}
+%----------------------------------------------------------------------------%
+
+{
+\setbeamertemplate{footline}{} 
+\setbeamertemplate{headline}{}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight]{fig_flwr}}
+\pgfsetfillopacity{0.8}
+\begin{frame}
+\bf
+\begin{exampleblock}{\vspace*{-3ex}}
+\begin{center}
+\Large Explicit computations on spatially flat \\[10pt] Friedmann Lemaître Robertson Walker spacetimes
+\end{center}
+\end{exampleblock}
+\end{frame}
+}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+ 
+\frametitle{Spiatially flat FLWR spacetimes} 
+
+\begin{itemize}
+ 
+\item \textbf{spatially flat Friedmann Lemaître Robertson Walker} spacetimes
+\vspace*{-12pt}
+\begin{equation*}
+g = a(\tau)^2 \ \left( - d\tau^2 + d\vec{x}^2 \right) 
+\vspace*{-8pt}
+\end{equation*}
+
+\item choosing a \textbf{free field state} $\Omega_0$ (inv. under FLWR sym.) of the quantized free Klein Gordon field on spatially flat FLWR spacetimes \\
+$\Delta_\pm$, $\Delta_\fsf$ : can be written using \textbf{spatial Fourier transform} in terms of \textbf{temporal modes} $\chi_k(\tau)$
+\vspace*{-6pt}
+\begin{equation*}
+\left( \partial^2_\tau + k^2 + m^2a^2 + \left( \xi - \frac16 \right)Ra^2 \right) \chi_k(\tau) = 0 
+\end{equation*}
+\begin{equation*}
+\chi_k \partial_\tau \overline{\chi_k} - \overline{\chi_k} \partial_\tau {\chi_k} =i 
+\end{equation*}
+
+\item \textbf{in principle} we can compute all quantities in terms of $\vec{k}$- and $\tau$-integrals using our regularisation procedure 
+  
+\end{itemize}
+ 
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{The conformal trick} 
+
+\begin{itemize}
+
+\item \textdbend \quad Even for spatially flat FLRW spacetimes, \\
+$\sigma$, $u$, $v$ are \textbf{not explicitly known} neither in \textbf{position space}, nor in \textbf{$\vec{k}$-space}, \\
+$\to$ but we need to know the $\vec{k}$-space version of e.g $\left( \Delta^2_\fsf \right)_\mathsf{reg}$
+\vspace*{20pt}
+
+\item \textbf{Trick}: $\Delta_\fsf=\Delta_{\fsf,0}+\delta \Delta_\fsf$, with \\[3pt]
+
+$\to$ $\Delta_{\fsf,0}$ contains sufficiently many singular contributions \\[3pt]
+
+$\to$ $\Delta_{\fsf,0}$ explicitly known in position and $\vec{k}$-space \\[3pt]
+
+$\to$ $(\Delta_{\fsf,0})^n$ can be regularized using our procedure
+
+\end{itemize}
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+
+\begin{frame}
+
+\frametitle{Fish diagram for FLWR} 
+
+$\bullet \ \Delta_{\fsf,0} \to$ the \textbf{Feynman propagator} of the \textbf{massless}, \textbf{conformally coupled} $(\xi = \frac16)$ \textbf{Klein Gordon field} in the conformal vacuum state 
+\begin{equation*}
+\Delta_{\fsf,0}(x_1,x_2)=\frac{1}{8\pi^2 a(\tau_1)a(\tau_2)}\frac{1}{\sigma_{\Mbb}(x_1,x_2)+i\epsilon} 
+\end{equation*}
+
+$\bullet \ $ Fish diagram
+\vspace*{-12pt}
+\begin{equation*}
+(\Delta_\fsf)^2_\mathsf{reg} = (\Delta_{\fsf,0})^2_\mathsf{reg} + 2 \delta\Delta_\fsf \Delta_{\fsf,0} + (\delta\Delta_\fsf)^2
+\vspace*{-25pt}
+\end{equation*}
+
+\begin{eqnarray*}
+(\Delta_{\fsf,0})^2_\mathsf{reg} &=& 
+\lim_{\alpha\to 0} \left( 1 - \pp \right) \frac{1}{M^{2\alpha}} (\Delta_{\fsf,0})^{2+\alpha} \\
+&=& - \frac{1+2\logar(a)}{16\pi^2 a^4} i\delta_\Mbb-\frac{1}{2(8\pi^2)^2 a^2\otimes a^2} \left(\Box_{\Mbb}\otimes 1\right)\frac{\log{M^2\sigma_{\epsilon,\Mbb}}}{\sigma_{\epsilon,\Mbb}}
+\end{eqnarray*}
+
+and then compute the Fourier transform \dots
+
+\end{frame}
+
+%----------------------------------------------------------------------------%
+\section{Conclu.}
+%----------------------------------------------------------------------------%
+
+{%
+\setbeamertemplate{footline}{} 
+\setbeamertemplate{headline}{}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight]{fig_conclu}}
+\pgfsetfillopacity{0.88}
+\begin{frame}
+\vfill
+\begin{flushright}
+\textcolor{white!80!blue}{\bf \LARGE Merci.}
+\end{flushright}
+\end{frame}
+}%
+
+%----------------------------------------------------------------------------%
+\appendix
+\backupbegin
+%----------------------------------------------------------------------------%
+
+%\begin{frame}[label=blablabla]
+
+%\frametitle{blablabla}
+ 
+%\hfill \hyperlink{blablabla}{\beamerreturnbutton{back}}
+
+%\end{frame}
+
+%----------------------------------------------------------------------------%
+\backupend
+%----------------------------------------------------------------------------%
+
+%============================================================================%
+\end{document} 
+%============================================================================%
